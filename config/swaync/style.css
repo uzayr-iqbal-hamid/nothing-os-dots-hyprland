@@ -1,0 +1,178 @@
+/* NOTHING-SHELL: Nothing OS notifications for swaync 0.12. Builds on the stock stylesheet and
+   overrides its variables: black cards with a hairline, Lettera Mono, white pills for buttons,
+   red only for critical notifications. Static colours (wallust no longer themes this).
+   Original: ~/.config/nothing-shell-backup/2026-09-13/swaync/style.css */
+
+@import url("file:///etc/xdg/swaync/style.css");
+
+:root {
+  --cc-bg: #000000;
+  --noti-border-color: #2E2E2E;
+  --noti-bg: 0, 0, 0;
+  --noti-bg-alpha: 1;
+  --noti-bg-alt: #1A1A1A;
+  --noti-bg-darker: #0D0D0D;
+  --noti-bg-hover: #1A1A1A;
+  --noti-bg-focus: rgba(255, 255, 255, 0.04);
+  --noti-close-bg: #242424;
+  --noti-close-bg-hover: #3A3A3A;
+  --text-color: #FFFFFF;
+  --text-color-disabled: #5A5A5A;
+  --bg-selected: #D71921;
+  --notification-icon-size: 48px;
+  --notification-group-icon-size: 24px;
+  --border: 1px solid var(--noti-border-color);
+  --border-radius: 20px;
+  --notification-shadow: none;
+  --font-size-body: 12px;
+  --font-size-summary: 13px;
+  --mpris-album-art-overlay: rgba(0, 0, 0, 0.7);
+  --mpris-button-hover: rgba(255, 255, 255, 0.1);
+  --mpris-album-art-icon-size: 64px;
+  --mpris-album-art-shadow: none;
+}
+
+* {
+  font-family: "Lettera Mono LL", "JetBrainsMono Nerd Font";
+}
+
+/* ---- notifications ---- */
+.notification-row .notification-background .notification.critical {
+  border-color: #D71921;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+  font-weight: 500;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+  font-size: 10px;
+  font-weight: normal;
+  color: #5A5A5A;
+  margin-right: 32px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+  color: #8C8C8C;
+}
+
+.close-button:hover {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.notification-row .notification-background .notification .notification-action > button {
+  background: #1A1A1A;
+  border: none;
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.notification-row .notification-background .notification .notification-action > button:hover {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content progressbar trough {
+  background: #3A3A3A;
+  min-height: 4px;
+  border-radius: 2px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content progressbar progress {
+  background: #FFFFFF;
+  border-radius: 2px;
+}
+
+/* ---- panel ---- */
+.control-center {
+  border: 1px solid #2E2E2E;
+  border-radius: 24px;
+}
+
+.control-center .control-center-list .notification {
+  box-shadow: none;
+}
+
+.control-center .control-center-list-placeholder {
+  opacity: 0.4;
+}
+
+.widget-title > label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #8C8C8C;
+}
+
+.widget-title > button {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  box-shadow: none;
+  padding: 2px 14px;
+  font-size: 11px;
+}
+
+.widget-title > button:hover {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.widget-mpris .widget-mpris-player {
+  border: 1px solid #2E2E2E;
+}
+
+.widget-volume,
+.widget-backlight {
+  background: #1A1A1A;
+  border-radius: 20px;
+  margin: 6px 12px;
+  padding: 4px 12px;
+}
+
+.widget-volume button,
+.widget-backlight button {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+scale trough {
+  background: #3A3A3A;
+  min-height: 4px;
+  border-radius: 2px;
+}
+
+scale trough highlight {
+  background: #FFFFFF;
+  border-radius: 2px;
+}
+
+scale slider {
+  background: #FFFFFF;
+  min-width: 12px;
+  min-height: 12px;
+  margin: -4px;
+  border: none;
+  box-shadow: none;
+}
+
+.widget-dnd switch {
+  background: #3A3A3A;
+  border: none;
+  border-radius: 999px;
+}
+
+.widget-dnd switch:checked {
+  background: #FFFFFF;
+}
+
+.widget-dnd switch slider {
+  background: #FFFFFF;
+  border-radius: 999px;
+}
+
+.widget-dnd switch:checked slider {
+  background: #000000;
+}

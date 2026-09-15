@@ -1,0 +1,49 @@
+/* NOTHING-SHELL: Nothing OS power menu. Grey tiles with a hairline that turn white on hover/focus;
+   monochrome glyph icons generated into nothing-icons/ (KooL's colour PNGs stay in icons/).
+   Original: ~/.config/nothing-shell-backup/2026-09-13/wlogout/style.css */
+
+window {
+    font-family: "Lettera Mono LL";
+    font-size: 11pt;
+    color: #8C8C8C;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    background-color: #1A1A1A;
+    color: #8C8C8C;
+    border: 1px solid #2E2E2E;
+    border-radius: 32px;
+    margin: 10px;
+    box-shadow: none;
+    outline-style: none;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+button:focus,
+button:hover {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #000000;
+}
+
+#lock { background-image: image(url("./nothing-icons/lock.png")); }
+#lock:focus, #lock:hover { background-image: image(url("./nothing-icons/lock-hover.png")); }
+
+#logout { background-image: image(url("./nothing-icons/logout.png")); }
+#logout:focus, #logout:hover { background-image: image(url("./nothing-icons/logout-hover.png")); }
+
+#suspend { background-image: image(url("./nothing-icons/suspend.png")); }
+#suspend:focus, #suspend:hover { background-image: image(url("./nothing-icons/suspend-hover.png")); }
+
+#shutdown { background-image: image(url("./nothing-icons/shutdown.png")); }
+#shutdown:focus, #shutdown:hover { background-image: image(url("./nothing-icons/shutdown-hover.png")); }
+
+#reboot { background-image: image(url("./nothing-icons/reboot.png")); }
+#reboot:focus, #reboot:hover { background-image: image(url("./nothing-icons/reboot-hover.png")); }
+
+#hibernate { background-image: image(url("./nothing-icons/hibernate.png")); }
+#hibernate:focus, #hibernate:hover { background-image: image(url("./nothing-icons/hibernate-hover.png")); }

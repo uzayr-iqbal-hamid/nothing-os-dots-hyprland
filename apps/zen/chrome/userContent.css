@@ -1,0 +1,39 @@
+/* Nothing OS - Zen userContent: about: pages and the new tab */
+@-moz-document url-prefix("about:") {
+  :root {
+    --in-content-page-background: #000000 !important;
+    --in-content-page-color: #FFFFFF !important;
+    --in-content-box-background: #0A0A0A !important;
+    --in-content-box-background-odd: #0A0A0A !important;
+    --in-content-box-border-color: #2E2E2E !important;
+    --in-content-text-color: #FFFFFF !important;
+    --in-content-deemphasized-text: #8C8C8C !important;
+    --in-content-primary-button-background: #FFFFFF !important;
+    --in-content-primary-button-background-hover: #E6E6E6 !important;
+    --in-content-primary-button-background-active: #CCCCCC !important;
+    --in-content-primary-button-text-color: #000000 !important;
+    --in-content-button-background: #141414 !important;
+    --in-content-button-background-hover: #1E1E1E !important;
+    --in-content-button-background-active: #2A2A2A !important;
+    --in-content-focus-outline-color: #FFFFFF !important;
+    --in-content-accent-color: #FFFFFF !important;
+    --in-content-accent-color-active: #E6E6E6 !important;
+    --in-content-link-color: #FFFFFF !important;
+    --in-content-link-color-hover: #D71921 !important;
+    --in-content-link-color-active: #D71921 !important;
+    --in-content-table-background: #0A0A0A !important;
+    --in-content-table-border-color: #2E2E2E !important;
+    --in-content-border-color: #2E2E2E !important;
+    --link-color: #FFFFFF !important;
+    --link-color-hover: #D71921 !important;
+    --newtab-background-color: #000000 !important;
+    --newtab-background-color-secondary: #0A0A0A !important;
+    --newtab-text-primary-color: #FFFFFF !important;
+    --newtab-primary-action-background: #FFFFFF !important;
+    --newtab-primary-element-text-color: #000000 !important;
+    --color-accent-primary: #FFFFFF !important;
+    --color-accent-primary-hover: #E6E6E6 !important;
+    --color-accent-primary-active: #CCCCCC !important;
+    --button-text-color-primary: #000000 !important;
+  }
+}

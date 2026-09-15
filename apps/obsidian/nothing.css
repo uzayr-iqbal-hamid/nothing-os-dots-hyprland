@@ -1,0 +1,109 @@
+/* Nothing OS snippet for Obsidian's default dark theme. Toggle in Settings > Appearance > CSS snippets.
+   Palette: bg #000, raised #0A0A0A, surface #141414, outline #2E2E2E, text #FFF, dim #8C8C8C, red #D71921. */
+.theme-dark {
+  color-scheme: dark;
+  --background-primary: #000000;
+  --background-primary-alt: #0A0A0A;
+  --background-secondary: #0A0A0A;
+  --background-secondary-alt: #141414;
+  --background-modifier-border: #2E2E2E;
+  --background-modifier-border-hover: #3A3A3A;
+  --background-modifier-border-focus: #FFFFFF;
+  --background-modifier-hover: rgba(255, 255, 255, 0.08);
+  --background-modifier-active-hover: rgba(255, 255, 255, 0.12);
+  --background-modifier-form-field: #0A0A0A;
+  --background-modifier-message: #141414;
+  --background-modifier-error: #D71921;
+  --background-modifier-error-hover: #FF4D4D;
+  --background-modifier-success: #1F1F1F;
+  --titlebar-background: #000000;
+  --titlebar-background-focused: #000000;
+  --text-normal: #FFFFFF;
+  --text-muted: #8C8C8C;
+  --text-faint: #5A5A5A;
+  --text-accent: #FFFFFF;
+  --text-accent-hover: #D71921;
+  --text-on-accent: #000000;
+  --text-on-accent-inverted: #FFFFFF;
+  --text-error: #FF4D4D;
+  --text-selection: rgba(255, 255, 255, 0.22);
+  --text-highlight-bg: rgba(215, 25, 33, 0.35);
+  --interactive-normal: #141414;
+  --interactive-hover: #1F1F1F;
+  --interactive-accent: #FFFFFF;
+  --interactive-accent-hover: #E6E6E6;
+  --link-color: #FFFFFF;
+  --link-color-hover: #D71921;
+  --link-external-color: #FFFFFF;
+  --link-external-color-hover: #D71921;
+  --link-unresolved-color: #8C8C8C;
+  --link-unresolved-opacity: 1;
+  --nav-item-background-active: #FFFFFF;
+  --nav-item-color-active: #000000;
+  --nav-item-weight-active: 500;
+  --nav-item-background-hover: rgba(255, 255, 255, 0.08);
+  --tab-text-color-focused-active: #FFFFFF;
+  --tab-text-color-focused-active-current: #FFFFFF;
+  --tab-background-active: #141414;
+  --tab-outline-color: #2E2E2E;
+  --checkbox-color: #D71921;
+  --checkbox-color-hover: #FF4D4D;
+  --checkbox-border-color: #5A5A5A;
+  --checkbox-border-color-hover: #8C8C8C;
+  --checkbox-marker-color: #FFFFFF;
+  --divider-color: #2E2E2E;
+  --hr-color: #2E2E2E;
+  --hr-thickness: 1px;
+  --blockquote-border-color: #FFFFFF;
+  --blockquote-color: #8C8C8C;
+  --code-background: #0A0A0A;
+  --code-normal: #E8E8E8;
+  --tag-background: #141414;
+  --tag-background-hover: #1F1F1F;
+  --tag-color: #FFFFFF;
+  --tag-border-color: #2E2E2E;
+  --tag-border-width: 1px;
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: #2E2E2E;
+  --scrollbar-active-thumb-bg: #5A5A5A;
+  --icon-color: #8C8C8C;
+  --icon-color-hover: #FFFFFF;
+  --icon-color-focused: #FFFFFF;
+  --modal-background: #0A0A0A;
+  --modal-border-color: #2E2E2E;
+  --prompt-border-color: #2E2E2E;
+  --dropdown-background: #0A0A0A;
+  --input-shadow: none;
+  --input-shadow-hover: none;
+  --shadow-s: none;
+  --shadow-l: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+  --radius-xl: 24px;
+  --status-bar-background: #000000;
+  --status-bar-border-color: #2E2E2E;
+  --status-bar-text-color: #8C8C8C;
+  --ribbon-background: #000000;
+  --graph-node: #FFFFFF;
+  --graph-node-unresolved: #5A5A5A;
+  --graph-node-focused: #D71921;
+  --graph-node-tag: #8C8C8C;
+  --graph-node-attachment: #8C8C8C;
+  --graph-line: #2E2E2E;
+  --h1-font: "Ndot 57", var(--font-text);
+  --h1-weight: 400;
+  --h1-size: 2.1em;
+  --h2-weight: 600;
+  --font-monospace-theme: "Lettera Mono LL";
+  --font-interface-theme: "Adwaita Sans";
+}
+/* Active nav item = white pill; its icon and text go black */
+.theme-dark .nav-file-title.is-active .nav-file-title-content,
+.theme-dark .nav-folder-title.is-active .nav-folder-title-content { color: #000000; }
+.theme-dark .nav-file-title.is-active svg, .theme-dark .nav-folder-title.is-active svg { color: #000000; }
+/* Buttons: white pill primary, outlined secondary */
+.theme-dark button.mod-cta { border-radius: 999px; }
+.theme-dark button:not(.mod-cta):not(.clickable-icon) { border: 1px solid #2E2E2E; border-radius: 999px; }
+/* Titles in the workspace tab header use the label font */
+.theme-dark .workspace-tab-header-inner-title { font-family: "Lettera Mono LL"; font-size: 12px; }

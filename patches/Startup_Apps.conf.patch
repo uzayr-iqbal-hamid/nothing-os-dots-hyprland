@@ -1,0 +1,20 @@
+--- a/hypr/configs/Startup_Apps.conf
++++ b/hypr/configs/Startup_Apps.conf
+@@ -24,7 +24,9 @@
+ #exec-once = ags
+ #exec-once = blueman-applet
+ #exec-once = rog-control-center
+-exec-once = waybar
++# NOTHING-SHELL: waybar replaced by the Quickshell bar (qs -c nothing, started from
++# UserConfigs/Startup_Apps.conf). KooL upgrades restore this file: re-comment after upgrading.
++#exec-once = waybar
+ exec-once = qs -c overview  # Quickshell Overview
+ exec-once = hypridle
+ exec-once = $scriptsDir/Hyprsunset.sh init
+@@ -46,3 +48,6 @@
+ 
+ # xdg-desktop-portal-hyprland (should be auto starting. However, you can force to start)
+ #exec-once = $scriptsDir/PortalHyprland.sh
++exec-once = blueman-applet
++#exec-once = qs -c overview  # Quickshell Overview  # NOTHING-SHELL: duplicate line, launched a second overview instance every login
++exec-once = $scriptsDir/KeybindsLayoutInit.sh

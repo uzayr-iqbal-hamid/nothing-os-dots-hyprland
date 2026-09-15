@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Nothing",
+  "version": "1.0",
+  "description": "Nothing OS look for Chrome: black, white, grey, one red.",
+  "theme": {
+    "images": { "theme_ntp_background": "ntp.png" },
+    "colors": {
+      "frame": [0, 0, 0],
+      "frame_inactive": [0, 0, 0],
+      "toolbar": [10, 10, 10],
+      "toolbar_text": [255, 255, 255],
+      "toolbar_button_icon": [255, 255, 255],
+      "tab_text": [255, 255, 255],
+      "tab_background_text": [140, 140, 140],
+      "tab_background_text_inactive": [90, 90, 90],
+      "bookmark_text": [255, 255, 255],
+      "omnibox_background": [20, 20, 20],
+      "omnibox_text": [255, 255, 255],
+      "button_background": [20, 20, 20],
+      "ntp_background": [0, 0, 0],
+      "ntp_text": [255, 255, 255],
+      "ntp_link": [255, 255, 255]
+    },
+    "properties": {
+      "ntp_background_alignment": "center",
+      "ntp_background_repeat": "no-repeat",
+      "ntp_logo_alternate": 1
+    }
+  }
+}

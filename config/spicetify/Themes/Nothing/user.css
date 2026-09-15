@@ -1,0 +1,15 @@
+/* Nothing OS: hairline outlines instead of tonal surfaces, white pill buttons, red only for errors */
+.main-nowPlayingBar-container { border-top: 1px solid var(--spice-misc); }
+.main-yourLibraryX-entryPoints, .main-globalNav-searchSection { border-bottom: 1px solid var(--spice-misc); }
+.Root__top-container { gap: 0 !important; }
+.main-view-container__scroll-node-child, .main-topBar-background { background-color: var(--spice-main) !important; }
+.main-card-card, .main-card-cardMetadata { background-color: transparent !important; }
+.main-card-card:hover { background-color: var(--spice-card) !important; }
+.main-playButton-PlayButton > button, .main-playPauseButton-button {
+  background-color: var(--spice-button) !important; color: var(--spice-main) !important;
+}
+.x-progressBar-fillColor, .progress-bar__fg, .x-progressBar-sliderArea .progress-bar__slider { background-color: var(--spice-text) !important; }
+.main-trackList-selected, .main-trackList-trackListRow.main-trackList-selected { background-color: rgba(255, 255, 255, 0.10) !important; }
+.main-trackList-playingIcon, .main-trackList-rowTitle.main-trackList-rowHighlight { color: var(--spice-text) !important; }
+.main-useDropTarget-base { border-radius: 12px; }
+a:hover { color: var(--spice-text) !important; }

@@ -1,0 +1,171 @@
+/* NOTHING-SHELL: Nothing OS launcher theme. Black panel with a hairline, pill search field,
+   white pill for the selection, red only for urgent entries. Every KooL rofi menu imports
+   config.rasi, which points here, so they all pick it up.
+   Kept outside themes/ because KooL upgrades replace that folder. */
+
+@import "~/.config/rofi/0-shared-fonts.rasi"
+
+* {
+    bg:         #000000;
+    surface:    #1A1A1A;
+    outline:    #2E2E2E;
+    fg:         #FFFFFF;
+    dim:        #8C8C8C;
+    faint:      #5A5A5A;
+    accent:     #D71921;
+    pill:       #FFFFFF;
+    pill-text:  #000000;
+}
+
+/*****----- Behaviour -----*****/
+configuration {
+    font:                "Lettera Mono LL 12";
+    modi:                "drun,filebrowser,run,window";
+    show-icons:          true;
+    icon-theme:          "Nothing-Mono";
+    display-drun:        "APPS";
+    display-run:         "RUN";
+    display-filebrowser: "FILES";
+    display-window:      "WINDOWS";
+    drun-display-format: "{name}";
+    window-format:       "{w}  ·  {c}  ·  {t}";
+    hover-select:        true;
+    me-select-entry:     "MouseSecondary";
+    me-accept-entry:     "MousePrimary";
+}
+
+/*****----- Main Window -----*****/
+window {
+    transparency:     "real";
+    location:         center;
+    anchor:           center;
+    fullscreen:       false;
+    width:            600px;
+    enabled:          true;
+    border:           1px solid;
+    border-color:     @outline;
+    border-radius:    28px;
+    cursor:           "default";
+    background-color: @bg;
+}
+
+mainbox {
+    enabled:          true;
+    spacing:          12px;
+    padding:          16px;
+    background-color: transparent;
+    children:         [ "inputbar", "message", "listview", "mode-switcher" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:          true;
+    spacing:          14px;
+    padding:          12px 20px;
+    border-radius:    21px;
+    background-color: @surface;
+    text-color:       @fg;
+    children:         [ "prompt", "entry" ];
+}
+prompt {
+    enabled:          true;
+    background-color: transparent;
+    text-color:       @dim;
+    font:             "Lettera Mono LL 10";
+    vertical-align:   0.5;
+}
+entry {
+    enabled:          true;
+    background-color: transparent;
+    text-color:       @fg;
+    cursor:           text;
+    placeholder:      "Search";
+    placeholder-color:@faint;
+    vertical-align:   0.5;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:          true;
+    columns:          1;
+    lines:            7;
+    cycle:            true;
+    dynamic:          true;
+    scrollbar:        false;
+    layout:           vertical;
+    fixed-height:     true;
+    spacing:          4px;
+    padding:          4px 0px;
+    background-color: transparent;
+    cursor:           "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:          true;
+    spacing:          14px;
+    padding:          9px 16px;
+    border-radius:    21px;
+    background-color: transparent;
+    text-color:       @fg;
+    cursor:           pointer;
+}
+element normal.urgent,
+element alternate.urgent {
+    text-color:       @accent;
+}
+element selected.normal,
+element selected.active {
+    background-color: @pill;
+    text-color:       @pill-text;
+}
+element selected.urgent {
+    background-color: @accent;
+    text-color:       @fg;
+}
+element-icon {
+    background-color: transparent;
+    size:             24px;
+    cursor:           inherit;
+}
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    cursor:           inherit;
+    font:             "Lettera Mono LL 11";
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher {
+    enabled:          true;
+    spacing:          8px;
+    background-color: transparent;
+    text-color:       @fg;
+}
+button {
+    padding:          8px 12px;
+    border-radius:    16px;
+    background-color: @surface;
+    text-color:       @dim;
+    font:             "Lettera Mono LL 9";
+    cursor:           pointer;
+}
+button selected {
+    background-color: @pill;
+    text-color:       @pill-text;
+}
+
+/*****----- Message -----*****/
+message {
+    background-color: transparent;
+    margin:           0px;
+    padding:          0px;
+}
+textbox {
+    padding:          10px 16px;
+    border-radius:    16px;
+    background-color: @surface;
+    text-color:       @fg;
+    vertical-align:   0.5;
+}

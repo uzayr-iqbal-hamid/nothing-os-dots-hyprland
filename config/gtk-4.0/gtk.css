@@ -1,0 +1,96 @@
+/* NOTHING-SHELL: Nothing OS colours for GTK4 / libadwaita apps (Nautilus, Loupe, pavucontrol).
+   libadwaita 1.6+ reads the CSS variables; the @define-color names cover older code paths.
+   Keep in step with ~/.config/gtk-3.0/gtk.css. This replaces a symlink to Flat-Remix's gtk.css
+   (backup: ~/.config/nothing-shell-backup/2026-09-13/gtk-4.0/). */
+
+:root {
+  --accent-color: #FF3B3B;
+  --accent-bg-color: #D71921;
+  --accent-fg-color: #FFFFFF;
+  --destructive-color: #FF3B3B;
+  --destructive-bg-color: #D71921;
+  --destructive-fg-color: #FFFFFF;
+  --error-color: #FF3B3B;
+  --error-bg-color: #D71921;
+  --error-fg-color: #FFFFFF;
+
+  --window-bg-color: #000000;
+  --window-fg-color: #FFFFFF;
+  --view-bg-color: #000000;
+  --view-fg-color: #FFFFFF;
+
+  --headerbar-bg-color: #000000;
+  --headerbar-fg-color: #FFFFFF;
+  --headerbar-border-color: #2E2E2E;
+  --headerbar-backdrop-color: #000000;
+  --headerbar-shade-color: rgba(255, 255, 255, 0.08);
+  --headerbar-darker-shade-color: rgba(255, 255, 255, 0.12);
+
+  --sidebar-bg-color: #0D0D0D;
+  --sidebar-fg-color: #FFFFFF;
+  --sidebar-backdrop-color: #0D0D0D;
+  --sidebar-border-color: #2E2E2E;
+  --sidebar-shade-color: rgba(0, 0, 0, 0.25);
+  --secondary-sidebar-bg-color: #0D0D0D;
+  --secondary-sidebar-fg-color: #FFFFFF;
+  --secondary-sidebar-backdrop-color: #0D0D0D;
+  --secondary-sidebar-border-color: #2E2E2E;
+
+  --card-bg-color: #1A1A1A;
+  --card-fg-color: #FFFFFF;
+  --card-shade-color: rgba(0, 0, 0, 0.36);
+  --dialog-bg-color: #1A1A1A;
+  --dialog-fg-color: #FFFFFF;
+  --popover-bg-color: #1A1A1A;
+  --popover-fg-color: #FFFFFF;
+  --popover-shade-color: rgba(0, 0, 0, 0.25);
+  --thumbnail-bg-color: #1A1A1A;
+  --thumbnail-fg-color: #FFFFFF;
+
+  --shade-color: rgba(0, 0, 0, 0.36);
+  --scrollbar-outline-color: rgba(0, 0, 0, 0.5);
+}
+
+@define-color accent_color #FF3B3B;
+@define-color accent_bg_color #D71921;
+@define-color accent_fg_color #FFFFFF;
+@define-color destructive_color #FF3B3B;
+@define-color destructive_bg_color #D71921;
+@define-color destructive_fg_color #FFFFFF;
+@define-color error_color #FF3B3B;
+@define-color error_bg_color #D71921;
+@define-color error_fg_color #FFFFFF;
+
+@define-color window_bg_color #000000;
+@define-color window_fg_color #FFFFFF;
+@define-color view_bg_color #000000;
+@define-color view_fg_color #FFFFFF;
+
+@define-color headerbar_bg_color #000000;
+@define-color headerbar_fg_color #FFFFFF;
+@define-color headerbar_border_color #2E2E2E;
+@define-color headerbar_backdrop_color #000000;
+@define-color headerbar_shade_color rgba(255, 255, 255, 0.08);
+@define-color headerbar_darker_shade_color rgba(255, 255, 255, 0.12);
+
+@define-color sidebar_bg_color #0D0D0D;
+@define-color sidebar_fg_color #FFFFFF;
+@define-color sidebar_backdrop_color #0D0D0D;
+@define-color sidebar_shade_color rgba(0, 0, 0, 0.25);
+@define-color secondary_sidebar_bg_color #0D0D0D;
+@define-color secondary_sidebar_fg_color #FFFFFF;
+@define-color secondary_sidebar_backdrop_color #0D0D0D;
+
+@define-color card_bg_color #1A1A1A;
+@define-color card_fg_color #FFFFFF;
+@define-color card_shade_color rgba(0, 0, 0, 0.36);
+@define-color dialog_bg_color #1A1A1A;
+@define-color dialog_fg_color #FFFFFF;
+@define-color popover_bg_color #1A1A1A;
+@define-color popover_fg_color #FFFFFF;
+@define-color popover_shade_color rgba(0, 0, 0, 0.25);
+@define-color thumbnail_bg_color #1A1A1A;
+@define-color thumbnail_fg_color #FFFFFF;
+
+@define-color shade_color rgba(0, 0, 0, 0.36);
+@define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);

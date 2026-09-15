@@ -1,0 +1,82 @@
+--- a/quickshell/overview/common/Appearance.qml
++++ b/quickshell/overview/common/Appearance.qml
+@@ -15,30 +15,32 @@
+     property QtObject font
+     property QtObject sizes
+ 
++    // NOTHING-SHELL: Nothing palette. MaterialThemeLoader cannot apply qml_color.json (its keys are
++    // not m3 names), so these defaults are what the overview actually shows. Re-apply after a KooL update.
+     m3colors: QtObject {
+         property bool darkmode: true
+-        property color m3primary: "#E5B6F2"
+-        property color m3onPrimary: "#452152"
+-        property color m3primaryContainer: "#5D386A"
+-        property color m3onPrimaryContainer: "#F9D8FF"
+-        property color m3secondary: "#D5C0D7"
+-        property color m3onSecondary: "#392C3D"
+-        property color m3secondaryContainer: "#534457"
+-        property color m3onSecondaryContainer: "#F2DCF3"
+-        property color m3background: "#161217"
+-        property color m3onBackground: "#EAE0E7"
+-        property color m3surface: "#161217"
+-        property color m3surfaceContainerLow: "#1F1A1F"
+-        property color m3surfaceContainer: "#231E23"
+-        property color m3surfaceContainerHigh: "#2D282E"
+-        property color m3surfaceContainerHighest: "#383339"
+-        property color m3onSurface: "#EAE0E7"
+-        property color m3surfaceVariant: "#4C444D"
+-        property color m3onSurfaceVariant: "#CFC3CD"
+-        property color m3inverseSurface: "#EAE0E7"
+-        property color m3inverseOnSurface: "#342F34"
+-        property color m3outline: "#988E97"
+-        property color m3outlineVariant: "#4C444D"
++        property color m3primary: "#FFFFFF"
++        property color m3onPrimary: "#000000"
++        property color m3primaryContainer: "#242424"
++        property color m3onPrimaryContainer: "#FFFFFF"
++        property color m3secondary: "#FFFFFF"
++        property color m3onSecondary: "#000000"
++        property color m3secondaryContainer: "#2E2E2E"
++        property color m3onSecondaryContainer: "#FFFFFF"
++        property color m3background: "#000000"
++        property color m3onBackground: "#FFFFFF"
++        property color m3surface: "#000000"
++        property color m3surfaceContainerLow: "#1A1A1A"
++        property color m3surfaceContainer: "#242424"
++        property color m3surfaceContainerHigh: "#2E2E2E"
++        property color m3surfaceContainerHighest: "#3A3A3A"
++        property color m3onSurface: "#FFFFFF"
++        property color m3surfaceVariant: "#2E2E2E"
++        property color m3onSurfaceVariant: "#BDBDBD"
++        property color m3inverseSurface: "#FFFFFF"
++        property color m3inverseOnSurface: "#000000"
++        property color m3outline: "#4A4A4A"
++        property color m3outlineVariant: "#2E2E2E"
+         property color m3shadow: "#000000"
+     }
+ 
+@@ -71,18 +73,18 @@
+         property int unsharpen: 2
+         property int verysmall: 8
+         property int small: 12
+-        property int normal: 17
+-        property int large: 23
++        property int normal: 16 // NOTHING-SHELL: radii match Theme.qml (card 16, panel 20)
++        property int large: 20
+         property int full: 9999
+         property int screenRounding: large
+-        property int windowRounding: 18
++        property int windowRounding: 16
+     }
+ 
+     font: QtObject {
+         property QtObject family: QtObject {
+-            property string main: "sans-serif"
+-            property string title: "sans-serif"
+-            property string expressive: "sans-serif"
++            property string main: "Lettera Mono LL" // NOTHING-SHELL: config.json's uiFont keys never reach these
++            property string title: "Lettera Mono LL"
++            property string expressive: "Ndot 57" // workspace numbers in dot matrix
+         }
+         property QtObject pixelSize: QtObject {
+             property int smaller: 12

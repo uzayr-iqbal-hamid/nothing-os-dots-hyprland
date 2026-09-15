@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Nothing
+Description=Black screen, dot-matrix fedora wordmark, a ring of dots that fills with boot progress
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/nothing
+ScriptFile=/usr/share/plymouth/themes/nothing/nothing.script

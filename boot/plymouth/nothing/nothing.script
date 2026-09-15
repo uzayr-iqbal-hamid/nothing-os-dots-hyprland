@@ -1,0 +1,95 @@
+# Nothing OS plymouth theme (script plugin).
+# Black background, dot-matrix "fedora." wordmark, a 24-dot ring that lights up with boot
+# progress while one red dot orbits so there is always motion. Password prompt draws bullets.
+
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+screen.w = Window.GetWidth();
+screen.h = Window.GetHeight();
+
+logo.image = Image("logo.png");
+logo.sprite = Sprite(logo.image);
+logo.sprite.SetPosition(screen.w / 2 - logo.image.GetWidth() / 2, screen.h / 2 - logo.image.GetHeight() / 2 - 40, 1);
+
+dot.off = Image("dot-off.png");
+dot.on = Image("dot-on.png");
+dot.red = Image("dot-red.png");
+
+ring.n = 24;
+ring.r = 40;
+ring.cx = screen.w / 2;
+ring.cy = screen.h / 2 + logo.image.GetHeight() / 2 + 60;
+ring.lit = 0;
+
+for (i = 0; i < ring.n; i++) {
+  a = i / ring.n * 2 * Math.Pi - Math.Pi / 2;
+  dots[i].x = ring.cx + Math.Cos(a) * ring.r - dot.off.GetWidth() / 2;
+  dots[i].y = ring.cy + Math.Sin(a) * ring.r - dot.off.GetHeight() / 2;
+  dots[i].sprite = Sprite(dot.off);
+  dots[i].sprite.SetPosition(dots[i].x, dots[i].y, 2);
+}
+
+red.sprite = Sprite(dot.red);
+red.tick = 0;
+
+fun refresh_callback() {
+  red.tick++;
+  local.k = Math.Int(red.tick / 4) % ring.n;
+  local.a = local.k / ring.n * 2 * Math.Pi - Math.Pi / 2;
+  red.sprite.SetPosition(ring.cx + Math.Cos(local.a) * ring.r - dot.red.GetWidth() / 2,
+                         ring.cy + Math.Sin(local.a) * ring.r - dot.red.GetHeight() / 2, 3);
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+fun progress_callback(duration, progress) {
+  local.n = Math.Int(progress * ring.n);
+  if (local.n > ring.n) local.n = ring.n;
+  if (local.n > ring.lit) {
+    for (local.i = ring.lit; local.i < local.n; local.i++) {
+      dots[local.i].sprite.SetImage(dot.on);
+    }
+    ring.lit = local.n;
+  }
+}
+Plymouth.SetBootProgressFunction(progress_callback);
+
+# Password prompt (LUKS etc.): a row of bullets under the ring
+bullet.image = Image("bullet.png");
+prompt.count = 0;
+
+fun display_password_callback(prompt_text, bullets) {
+  for (local.i = 0; local.i < prompt.count; local.i++) {
+    bullet_sprites[local.i].SetOpacity(0);
+  }
+  prompt.count = bullets;
+  if (prompt.count > 24) prompt.count = 24;
+  local.x0 = screen.w / 2 - (prompt.count * 20) / 2;
+  for (local.i = 0; local.i < prompt.count; local.i++) {
+    bullet_sprites[local.i] = Sprite(bullet.image);
+    bullet_sprites[local.i].SetPosition(local.x0 + local.i * 20, ring.cy + ring.r + 40, 4);
+    bullet_sprites[local.i].SetOpacity(1);
+  }
+  prompt.label = Sprite(Image.Text("ENTER PASSWORD", 0.55, 0.55, 0.55));
+  prompt.label.SetPosition(screen.w / 2 - prompt.label.GetImage().GetWidth() / 2, ring.cy + ring.r + 70, 4);
+}
+fun display_normal_callback() {
+  for (local.i = 0; local.i < prompt.count; local.i++) {
+    bullet_sprites[local.i].SetOpacity(0);
+  }
+  prompt.count = 0;
+  if (prompt.label) prompt.label.SetOpacity(0);
+}
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+
+# Status messages (fsck etc.), small and dim at the bottom
+fun message_callback(text) {
+  message.sprite = Sprite(Image.Text(text, 0.4, 0.4, 0.4));
+  message.sprite.SetPosition(screen.w / 2 - message.sprite.GetImage().GetWidth() / 2, screen.h - 60, 5);
+}
+fun hide_message_callback(text) {
+  if (message.sprite) message.sprite.SetOpacity(0);
+}
+Plymouth.SetMessageDisplayFunction(message_callback);
+Plymouth.SetHideMessageFunction(hide_message_callback);

@@ -1,0 +1,10 @@
+--- a/hypr/scripts/RefreshNoWaybar.sh
++++ b/hypr/scripts/RefreshNoWaybar.sh
+@@ -29,6 +29,7 @@
+ #ags -q && ags &
+ 
+ # quit quickshell & relaunch quickshell
++# NOTHING-SHELL: was `pkill qs && qs &` which killed the whole Nothing shell (bar/dock/widgets)
+ #pkill qs && qs &
+ 
+ # Wallust refresh (synchronous to ensure colors are ready)

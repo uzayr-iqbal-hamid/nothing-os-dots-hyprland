@@ -1,0 +1,125 @@
+# Nothing flavor for yazi: white on the terminal's black, greys for structure, red only where it means something.
+# Colours mirror ~/.config/quickshell/nothing/Theme.qml.
+
+[mgr]
+cwd = { fg = "#FFFFFF", bold = true }
+find_keyword  = { fg = "#D71921", bold = true, underline = true }
+find_position = { fg = "#000000", bg = "#FFFFFF", bold = true }
+marker_copied   = { fg = "#FFFFFF", bg = "#FFFFFF" }
+marker_cut      = { fg = "#D71921", bg = "#D71921" }
+marker_marked   = { fg = "#8C8C8C", bg = "#8C8C8C" }
+marker_selected = { fg = "#FFFFFF", bg = "#FFFFFF" }
+count_copied   = { fg = "#000000", bg = "#FFFFFF" }
+count_cut      = { fg = "#FFFFFF", bg = "#D71921" }
+count_selected = { fg = "#000000", bg = "#FFFFFF" }
+border_symbol = "│"
+border_style  = { fg = "#4A4A4A" }
+
+[tabs]
+active   = { fg = "#000000", bg = "#FFFFFF", bold = true }
+inactive = { fg = "#8C8C8C", bg = "#1A1A1A" }
+
+[mode]
+normal_main = { fg = "#000000", bg = "#FFFFFF", bold = true }
+normal_alt  = { fg = "#FFFFFF", bg = "#1A1A1A" }
+select_main = { fg = "#FFFFFF", bg = "#D71921", bold = true }
+select_alt  = { fg = "#D71921", bg = "#1A1A1A" }
+unset_main  = { fg = "#000000", bg = "#8C8C8C", bold = true }
+unset_alt   = { fg = "#8C8C8C", bg = "#1A1A1A" }
+
+[status]
+perm_sep   = { fg = "#5A5A5A" }
+perm_type  = { fg = "#FFFFFF" }
+perm_read  = { fg = "#BDBDBD" }
+perm_write = { fg = "#D71921" }
+perm_exec  = { fg = "#8C8C8C" }
+progress_label  = { fg = "#FFFFFF", bold = true }
+progress_normal = { fg = "#FFFFFF", bg = "#3A3A3A" }
+progress_error  = { fg = "#FFFFFF", bg = "#D71921" }
+
+[pick]
+border   = { fg = "#4A4A4A" }
+active   = { fg = "#FFFFFF", bold = true }
+inactive = { fg = "#8C8C8C" }
+
+[input]
+border   = { fg = "#FFFFFF" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[cmp]
+border = { fg = "#4A4A4A" }
+
+[tasks]
+border  = { fg = "#4A4A4A" }
+title   = {}
+hovered = { fg = "#FFFFFF", bold = true }
+
+[which]
+mask            = { bg = "#1A1A1A" }
+cand            = { fg = "#FFFFFF" }
+rest            = { fg = "#8C8C8C" }
+desc            = { fg = "#8C8C8C" }
+separator       = "  "
+separator_style = { fg = "#5A5A5A" }
+
+[help]
+on      = { fg = "#FFFFFF" }
+run     = { fg = "#D71921" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#000000", bg = "#FFFFFF" }
+
+[spot]
+border   = { fg = "#4A4A4A" }
+title    = { fg = "#FFFFFF" }
+tbl_col  = { fg = "#FFFFFF" }
+tbl_cell = { fg = "#000000", bg = "#FFFFFF" }
+
+[notify]
+title_info  = { fg = "#FFFFFF" }
+title_warn  = { fg = "#BDBDBD" }
+title_error = { fg = "#D71921" }
+
+[filetype]
+rules = [
+	{ mime = "image/*", fg = "#BDBDBD" },
+	{ mime = "{audio,video}/*", fg = "#BDBDBD" },
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#8C8C8C" },
+	{ mime = "application/{pdf,doc,rtf}", fg = "#E8E8E8" },
+	{ mime = "vfs/{absent,stale}", fg = "#5A5A5A" },
+	{ url = "*", fg = "#E8E8E8" },
+	{ url = "*/", fg = "#FFFFFF", bold = true },
+]
+
+[icon]
+dirs = [
+	{ name = ".config", text = "", fg = "#8C8C8C" },
+	{ name = ".git", text = "", fg = "#8C8C8C" },
+	{ name = ".github", text = "", fg = "#8C8C8C" },
+	{ name = ".npm", text = "", fg = "#8C8C8C" },
+	{ name = "Desktop", text = "", fg = "#FFFFFF" },
+	{ name = "Development", text = "", fg = "#FFFFFF" },
+	{ name = "Documents", text = "", fg = "#FFFFFF" },
+	{ name = "Downloads", text = "", fg = "#FFFFFF" },
+	{ name = "Library", text = "", fg = "#FFFFFF" },
+	{ name = "Movies", text = "", fg = "#FFFFFF" },
+	{ name = "Music", text = "", fg = "#FFFFFF" },
+	{ name = "Pictures", text = "", fg = "#FFFFFF" },
+	{ name = "Public", text = "", fg = "#FFFFFF" },
+	{ name = "Videos", text = "", fg = "#FFFFFF" },
+]
+conds = [
+	{ if = "orphan", text = "", fg = "#5A5A5A" },
+	{ if = "link", text = "", fg = "#8C8C8C" },
+	{ if = "block", text = "", fg = "#8C8C8C" },
+	{ if = "char", text = "", fg = "#8C8C8C" },
+	{ if = "fifo", text = "", fg = "#8C8C8C" },
+	{ if = "sock", text = "", fg = "#8C8C8C" },
+	{ if = "sticky", text = "", fg = "#8C8C8C" },
+	{ if = "dummy", text = "", fg = "#D71921" },
+	{ if = "dir & hovered", text = "", fg = "#FFFFFF" },
+	{ if = "dir", text = "", fg = "#FFFFFF" },
+	{ if = "exec", text = "", fg = "#FFFFFF" },
+	{ if = "!dir", text = "", fg = "#BDBDBD" },
+]

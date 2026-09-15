@@ -1,0 +1,17 @@
+{
+    "windowBackground": "#000000",
+    "primaryText": "#FFFFFF",
+    "layerBackground1": "#1A1A1A",
+    "layerBackground2": "#242424",
+    "layerBackground3": "#2E2E2E",
+    "surfaceText": "#FFFFFF",
+    "secondaryText": "#8C8C8C",
+    "borderPrimary": "#2E2E2E",
+    "shadowColor": "#000000",
+    "accentPrimary": "#D71921",
+    "accentSecondary": "#FFFFFF",
+    "selectionBackground": "#FFFFFF",
+    "accentPrimaryText": "#FFFFFF",
+    "selectionText": "#000000",
+    "borderSecondary": "#4A4A4A"
+}

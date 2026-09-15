@@ -1,0 +1,30 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    // Nothing OS fetch: dot-matrix wordmark (kitty graphics) + monochrome keys.
+    // Regenerate the logo with ~/.config/fastfetch/nothing-logo.py; fallback text logo is nothing-logo.txt.
+    "logo": {
+        "source": "~/.config/fastfetch/nothing-logo.png",
+        "type": "kitty-direct",
+        "width": 34,
+        "padding": { "top": 2, "left": 1, "right": 3 }
+    },
+    "display": {
+        "separator": "   ",
+        "color": { "keys": "white", "title": "white" }
+    },
+    "modules": [
+        "break",
+        { "type": "title", "format": "{user-name}\u001b[90m@\u001b[0m{host-name}" },
+        { "type": "custom", "format": "\u001b[90m──────────────────────────────" },
+        { "type": "os",       "key": " ", "format": "{name} {version-id}" },
+        { "type": "kernel",   "key": " " },
+        { "type": "wm",       "key": "󰍹 " },
+        { "type": "shell",    "key": " " },
+        { "type": "terminal", "key": " " },
+        { "type": "memory",   "key": "󰍛 ", "format": "{used} / {total}" },
+        { "type": "uptime",   "key": "󰔛 " },
+        { "type": "custom", "format": "\u001b[90m──────────────────────────────" },
+        { "type": "custom", "format": "\u001b[38;2;215;25;33m● \u001b[38;2;58;58;58m● \u001b[38;2;90;90;90m● \u001b[38;2;140;140;140m● \u001b[38;2;200;200;200m● \u001b[38;2;255;255;255m●" },
+        "break"
+    ]
+}

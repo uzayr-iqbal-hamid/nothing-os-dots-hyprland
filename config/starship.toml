@@ -1,0 +1,133 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+# Nothing OS prompt: white / grey / faint grey, red only for errors and danger.
+# Dot prompt character: white dot = ok, red dot = last command failed, hollow dot = vi command mode.
+
+add_newline = true
+palette = "nothing"
+format = """
+$username$hostname$directory$git_branch$git_commit$git_state$git_status$nix_shell$docker_context$nodejs$bun$python$rust$golang$package$cmd_duration$jobs$sudo
+$character"""
+right_format = "$time"
+
+[palettes.nothing]
+bright = "#FFFFFF"
+mute = "#8C8C8C"
+faint = "#5A5A5A"
+accent = "#D71921"
+
+[character]
+success_symbol = "[●](bold bright)"
+error_symbol = "[●](bold accent)"
+vimcmd_symbol = "[○](bold bright)"
+vimcmd_replace_one_symbol = "[○](bold accent)"
+vimcmd_replace_symbol = "[○](bold accent)"
+vimcmd_visual_symbol = "[○](bold mute)"
+
+[directory]
+style = "bold bright"
+read_only = " 󰌾"
+read_only_style = "accent"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[username]
+style_user = "mute"
+style_root = "accent"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = true
+style = "mute"
+format = "[@$hostname]($style) "
+
+[git_branch]
+symbol = " "
+style = "mute"
+format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[git_commit]
+style = "faint"
+format = "[($hash$tag)]($style) "
+tag_symbol = " ● "
+
+[git_state]
+style = "accent"
+format = "[$state( $progress_current/$progress_total)]($style) "
+
+[git_status]
+style = "mute"
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "$${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[cmd_duration]
+min_time = 2000
+style = "faint"
+format = "[$duration]($style) "
+
+[jobs]
+symbol = "✦"
+style = "mute"
+format = "[$symbol$number]($style) "
+
+[sudo]
+disabled = false
+symbol = "󰌆 "
+style = "accent"
+format = "[$symbol]($style)"
+
+[time]
+disabled = false
+style = "faint"
+time_format = "%H:%M"
+format = "[$time]($style)"
+
+[nix_shell]
+symbol = " "
+style = "mute"
+format = "[$symbol$state( \\($name\\))]($style) "
+
+[docker_context]
+symbol = " "
+style = "mute"
+format = "[$symbol$context]($style) "
+
+[nodejs]
+symbol = " "
+style = "mute"
+format = "[$symbol($version )]($style)"
+
+[bun]
+symbol = " "
+style = "mute"
+format = "[$symbol($version )]($style)"
+
+[python]
+symbol = " "
+style = "mute"
+format = "[$symbol($version )(\\($virtualenv\\) )]($style)"
+
+[rust]
+symbol = " "
+style = "mute"
+format = "[$symbol($version )]($style)"
+
+[golang]
+symbol = " "
+style = "mute"
+format = "[$symbol($version )]($style)"
+
+[package]
+symbol = "□ "
+style = "faint"
+format = "[$symbol$version]($style) "

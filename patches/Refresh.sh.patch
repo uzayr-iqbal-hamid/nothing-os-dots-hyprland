@@ -1,0 +1,22 @@
+--- a/hypr/scripts/Refresh.sh
++++ b/hypr/scripts/Refresh.sh
+@@ -31,6 +31,8 @@
+ #ags -q && ags &
+ 
+ # quit quickshell & relaunch quickshell
++# NOTHING-SHELL: disabled. It killed every qs (Nothing bar + overview) and relaunched a bare `qs`
++# with no config. Quickshell hot-reloads its own files, so nothing needs restarting.
+ #pkill qs && qs &
+ 
+ # some process to kill
+@@ -40,8 +42,9 @@
+ done
+ 
+ #Restart waybar
++# NOTHING-SHELL: waybar replaced by the Quickshell bar
+ sleep 0.1
+-waybar &
++#waybar &
+ 
+ # relaunch swaync
+ sleep 0.3

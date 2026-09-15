@@ -1,0 +1,51 @@
+ /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+ /* STATIC Nothing OS palette: wallust no longer derives colors from the wallpaper.
+    Original dynamic templates: ~/.config/wallust/templates.wallust-bak */
+
+* {
+active-background: #D71921;
+active-foreground: #FFFFFF;
+normal-background: #000000;
+normal-foreground: #FFFFFF;
+urgent-background: #8C8C8C;
+urgent-foreground: #FFFFFF;
+
+alternate-active-background: #BDBDBD;
+alternate-active-foreground: #FFFFFF;
+alternate-normal-background: #000000;
+alternate-normal-foreground: #FFFFFF;
+alternate-urgent-background: #000000;
+alternate-urgent-foreground: #FFFFFF;
+
+selected-active-background: #D71921;
+selected-active-foreground: #000000;
+selected-normal-background: #D71921;
+selected-normal-foreground: #000000;
+selected-urgent-background: #BDBDBD;
+selected-urgent-foreground: #000000;
+
+background-color: #000000;
+background: rgba(0,0,0,0.7);
+foreground: #FFFFFF;
+border-color: #D71921;
+
+color0: #1A1A1A;
+color1: #D71921;
+color2: #FFFFFF;
+color3: #BDBDBD;
+color4: #8C8C8C;
+color5: #5A5A5A;
+color6: #1A1A1A;
+color7: #242424;
+color8: #4A4A4A;
+color9: #FF3B3B;
+color10: #2E2E2E;
+color11: #BDBDBD;
+color12: #D71921;
+color13: #8C8C8C;
+color14: #E8E8E8;
+color15: #FFFFFF;
+
+
+}
+

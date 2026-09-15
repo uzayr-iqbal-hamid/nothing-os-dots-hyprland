@@ -1,0 +1,98 @@
+/* Nothing OS - Zen userChrome. Needs toolkit.legacyUserProfileCustomizations.stylesheets = true (user.js).
+   Palette matches ~/.config/quickshell/nothing/Theme.qml. Layers on top of installed Zen mods. */
+:root {
+  --nothing-bg: #000000;
+  --nothing-raised: #0A0A0A;
+  --nothing-surface: #141414;
+  --nothing-outline: #2E2E2E;
+  --nothing-track: #3A3A3A;
+  --nothing-text: #FFFFFF;
+  --nothing-dim: #8C8C8C;
+  --nothing-faint: #5A5A5A;
+  --nothing-accent: #D71921;
+
+  --zen-branding-dark: var(--nothing-bg) !important;
+  --zen-colors-primary: var(--nothing-surface) !important;
+  --zen-colors-secondary: #1E1E1E !important;
+  --zen-colors-tertiary: var(--nothing-raised) !important;
+  --zen-colors-hover-bg: #2A2A2A !important;
+  --zen-colors-primary-foreground: var(--nothing-text) !important;
+  --zen-colors-border: var(--nothing-outline) !important;
+  --zen-colors-border-contrast: rgba(255, 255, 255, 0.12) !important;
+  --zen-colors-input-bg: var(--nothing-raised) !important;
+  --zen-dialog-background: var(--nothing-raised) !important;
+  --zen-in-content-dialog-background: var(--nothing-bg) !important;
+  --zen-urlbar-background: var(--nothing-surface) !important;
+  --zen-themed-toolbar-bg-transparent: var(--nothing-bg) !important;
+  --zen-toolbar-element-bg: rgba(255, 255, 255, 0.10) !important;
+  --zen-toolbar-element-bg-hover: rgba(255, 255, 255, 0.16) !important;
+  --zen-border-radius: 10px !important;
+  --toolbox-textcolor: var(--nothing-text) !important;
+  --arrowpanel-background: var(--nothing-raised) !important;
+  --arrowpanel-color: var(--nothing-text) !important;
+  --arrowpanel-border-color: var(--nothing-outline) !important;
+  --panel-separator-color: var(--nothing-outline) !important;
+  --focus-outline-color: var(--nothing-text) !important;
+  --urlbar-box-bg-color: var(--nothing-surface) !important;
+  --urlbar-box-hover-bg-color: #1E1E1E !important;
+  --tab-selected-bgcolor: var(--nothing-text) !important;
+  --lwt-accent-color: var(--nothing-bg) !important;
+  --identity-box-margin-inline: 6px;
+}
+
+/* Tab titles and the address bar in the Nothing label font */
+#tabbrowser-tabs .tab-label,
+#zen-workspaces-button,
+.zen-workspace-name {
+  font-family: "Lettera Mono LL", monospace !important;
+  font-size: 12px !important;
+}
+#urlbar-input, #urlbar .urlbarView-row, #searchbar {
+  font-family: "Lettera Mono LL", monospace !important;
+}
+
+/* Selected tab = white pill with black text, like the shell's pills */
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-background {
+  background: var(--nothing-text) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-label,
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-icon-overlay,
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-close-button,
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-reset-button {
+  color: var(--nothing-bg) !important;
+  fill: var(--nothing-bg) !important;
+}
+#tabbrowser-tabs .tabbrowser-tab:not([selected]) .tab-label {
+  color: var(--nothing-dim) !important;
+}
+#tabbrowser-tabs .tabbrowser-tab:not([selected]):hover .tab-label {
+  color: var(--nothing-text) !important;
+}
+
+/* Sidebar chrome: thin outline instead of coloured surfaces */
+#navigator-toolbox, #zen-sidebar-splitter, #zen-appcontent-navbar-container {
+  border-color: var(--nothing-outline) !important;
+}
+#urlbar-background {
+  border: 1px solid var(--nothing-outline) !important;
+}
+#urlbar[focused] #urlbar-background {
+  border-color: var(--nothing-text) !important;
+  box-shadow: none !important;
+}
+
+/* Red only for attention: audio/muted and the private badge */
+.tab-icon-overlay[soundplaying], .tab-icon-overlay[muted] {
+  fill: var(--nothing-accent) !important;
+}
+
+/* Sidebar notifications (update complete, etc.) and chrome links */
+:root {
+  --zen-sidebar-notification-bg: var(--nothing-raised) !important;
+  --zen-sidebar-notification-outline: 1px solid var(--nothing-outline) !important;
+  --zen-sidebar-notification-shadow: none !important;
+  --link-color: var(--nothing-text) !important;
+  --link-color-hover: var(--nothing-accent) !important;
+}

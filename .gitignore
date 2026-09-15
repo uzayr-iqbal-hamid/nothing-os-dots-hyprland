@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.bak
+*.bak-*
+.DS_Store
+# Fonts are not redistributable, see README
+boot/sddm/nothing/fonts/
