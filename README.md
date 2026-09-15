@@ -63,8 +63,8 @@ Pango gotcha: a family name ending in a number is parsed as a size, so configs w
 ## Install
 
 ```sh
-git clone https://github.com/uzayr-iqbal-hamid/nothing-dotfiles ~/nothing-dotfiles
-cd ~/nothing-dotfiles
+git clone https://github.com/uzayr-iqbal-hamid/nothing-os-dots-hyprland ~/nothing-os-dots-hyprland
+cd ~/nothing-os-dots-hyprland
 ./install.sh          # copies configs into ~/.config (backs up what it replaces), scripts to ~/.local/bin, wallpapers to ~/Pictures
 ./patches/apply.sh    # patches the four JaKooLit vendor files
 ```
