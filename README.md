@@ -7,7 +7,7 @@ custom [Quickshell](https://quickshell.org) shell. Black surfaces, white text, o
 The base install is [JaKooLit's Hyprland-Dots](https://github.com/JaKooLit/Hyprland-Dots); everything
 here layers on top of it. Only four upstream files are touched, and those changes ship as patches.
 
-> Screenshots coming. Until then, `wallpapers/` shows the five compositions.
+![Desktop: pill bar, calendar / bluetooth / media / screen-time widgets, Ndot clock, auto-hide dock](screenshots/desktop.png)
 
 ## What is in here
 
