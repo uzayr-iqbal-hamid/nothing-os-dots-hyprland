@@ -47,6 +47,25 @@ packages=(
 
 install_boot() {
   local boot="$ROOT/boot"
+  local state=/var/lib/nothing-boot/arch
+  mkdir -p "$state"
+
+  if [[ ! -e $state/installed ]]; then
+    if [[ -e /etc/sddm.conf.d/zz-nothing.conf ]]; then
+      cp -a /etc/sddm.conf.d/zz-nothing.conf "$state/sddm.conf"
+    fi
+    if [[ -d /usr/share/sddm/themes/nothing ]]; then
+      cp -a /usr/share/sddm/themes/nothing "$state/sddm-theme"
+    fi
+    if [[ -L /etc/systemd/system/display-manager.service ]]; then
+      readlink /etc/systemd/system/display-manager.service > "$state/display-manager.target"
+    fi
+    if command -v plymouth-set-default-theme >/dev/null; then
+      plymouth-set-default-theme --get > "$state/plymouth-theme" 2>/dev/null || true
+    fi
+    touch "$state/installed"
+  fi
+
   pacman -S --needed sddm weston plymouth
 
   echo "== SDDM"
@@ -80,13 +99,17 @@ CONF
 
   if (( GRUB )); then
     echo "== GRUB"
+    pacman -S --needed grub
+    [[ -f /etc/default/grub ]] || {
+      echo "GRUB configuration not found at /etc/default/grub" >&2
+      exit 1
+    }
     [[ -f /etc/default/grub.nothing-arch.bak ]] || cp /etc/default/grub /etc/default/grub.nothing-arch.bak
     if grep -q '^GRUB_CMDLINE_LINUX_DEFAULT=' /etc/default/grub; then
       sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\([^"]*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 quiet splash"/' /etc/default/grub
     else
       printf '\nGRUB_CMDLINE_LINUX_DEFAULT="quiet splash"\n' >> /etc/default/grub
     fi
-    pacman -S --needed grub
     grub-mkconfig -o /boot/grub/grub.cfg
   fi
 }
