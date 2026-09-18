@@ -28,10 +28,14 @@ done
   exit 1
 }
 command -v pacman >/dev/null || { echo "pacman is required" >&2; exit 1; }
+SUDO=""
 if (( BOOT_ONLY )); then
   [[ $EUID -eq 0 ]] || { echo "run --boot-only with sudo" >&2; exit 1; }
-else
-  command -v sudo >/dev/null || { echo "sudo is required" >&2; exit 1; }
+elif (( INSTALL_PACKAGES || INSTALL_BOOT )); then
+  if (( EUID != 0 )); then
+    SUDO=sudo
+    command -v sudo >/dev/null || { echo "sudo is required" >&2; exit 1; }
+  fi
 fi
 
 packages=(
@@ -95,7 +99,7 @@ fi
 
 if (( INSTALL_PACKAGES )); then
   echo "== Arch packages"
-  sudo pacman -Syu --needed "${packages[@]}"
+  $SUDO pacman -Syu --needed "${packages[@]}"
 fi
 
 if (( INSTALL_AUR )) && ! command -v qs >/dev/null; then
@@ -121,7 +125,7 @@ if (( INSTALL_BOOT )); then
   echo "== Arch boot integration"
   boot_args=(--boot-only)
   (( GRUB )) && boot_args+=(--grub)
-  sudo bash "$ROOT/boot/arch/install.sh" "${boot_args[@]}"
+  $SUDO bash "$ROOT/boot/arch/install.sh" "${boot_args[@]}"
 else
   echo "Boot integration skipped (--no-boot)."
 fi
