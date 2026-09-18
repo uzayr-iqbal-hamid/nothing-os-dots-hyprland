@@ -1,6 +1,6 @@
 # Nothing OS dotfiles for Hyprland
 
-A desktop that looks like [Nothing OS](https://nothing.tech), built on Fedora 44 + Hyprland with a
+A desktop that looks like [Nothing OS](https://nothing.tech), built on Arch Linux or Fedora + Hyprland with a
 custom [Quickshell](https://quickshell.org) shell. Black surfaces, white text, one red accent
 (`#D71921`), dot-matrix clocks, monochrome icons, and generated grainy geometric wallpapers.
 
@@ -28,14 +28,14 @@ here layers on top of it. Only four upstream files are touched, and those change
 | Static palette | `config/wallust/templates/` | wallust templates with fixed hex values, so KooL's wallpaper scripts keep writing the Nothing palette |
 | Icon theme generator | `local/bin/nothing-mono-icons.py` | builds a greyscale copy of any icon theme (`Nothing-Mono`) |
 | Wallpapers | `wallpapers/`, `config/hypr/UserScripts/NothingWallpaper.py` | 5 compositions x dark/light at 1080p; generator renders any size |
-| Boot chain | `boot/` | SDDM greeter theme (QML), Plymouth script theme, hidden GRUB menu, `install.sh` (sudo) |
+| Boot chain | `boot/` | Shared SDDM/Plymouth assets; use `boot/arch/install.sh` or `boot/fedora/install.sh` |
 | Apps | `apps/` | Zen browser userChrome, Obsidian CSS snippet, Chrome theme pack, Spotify (spicetify) theme in `config/spicetify` |
 | Upstream patches | `patches/` | the four JaKooLit files that had to change, as diffs |
 | Shell rc | `shell/zshrc-nothing.zsh` | starship + fastfetch lines for `.zshrc` |
 
 ## Requirements
 
-Tested on Fedora 44, Hyprland 0.55, Quickshell 0.3.1 (git), Qt 6.11.
+Tested on Arch Linux and Fedora 44, Hyprland 0.55, Quickshell 0.3.1 (git), Qt 6.11.
 
 - JaKooLit Hyprland-Dots (v2.3.19 or newer) already installed
 - `quickshell` (the COPR `quickshell-git` build; the packaged 0.3.0 crashed after Qt 6.11)
@@ -44,6 +44,59 @@ Tested on Fedora 44, Hyprland 0.55, Quickshell 0.3.1 (git), Qt 6.11.
 - `python3-pillow` (wallpapers, icons, fetch logo), `starship`, `fastfetch`, `btop`, `yazi`
 - `kvantum`, `qt6ct`, `qt5ct`, [adw-gtk3](https://github.com/lassekongo83/adw-gtk3) (in `~/.local/share/themes` or system-wide)
 - Cursor `Bibata-Modern-Ice`, base icon theme `Flat-Remix-Blue-Dark` (any theme works as the input to the generator)
+
+## Choose your distribution
+
+The repository is developed from Windows, but installation must run on Linux. Windows can edit or
+clone the repository, but it cannot run `pacman`, `dnf`, SDDM, Plymouth, or systemd services.
+Use a real installation, VM, live USB, or suitable WSL environment.
+
+Both installers install the same Nothing OS desktop configuration. Only package installation and
+system boot integration differ between Arch Linux and Fedora.
+
+Do not run both installers. Choose the section matching the Linux distribution where Hyprland is
+installed.
+
+### Arch Linux
+
+The Arch installer is the complete Arch path. It installs packages, Quickshell when an AUR helper
+is available, the user configuration, SDDM, and Plymouth:
+
+```sh
+git clone https://github.com/burntKernel/NothingOS-Arch_hyprland.git ~/NothingOS-Arch_hyprland
+cd ~/NothingOS-Arch_hyprland
+bash boot/arch/install.sh
+```
+
+Options:
+
+```sh
+bash boot/arch/install.sh --no-boot  # desktop configuration only
+bash boot/arch/install.sh --no-aur   # skip automatic AUR Quickshell installation
+bash boot/arch/install.sh --grub     # also update GRUB after reviewing /etc/default/grub
+sudo bash boot/arch/uninstall.sh     # remove SDDM/Plymouth integration
+```
+
+### Fedora
+
+Fedora uses the existing JaKooLit/Fedora environment and the shared user-level installer. Run the
+following from the repository after installing the requirements listed above:
+
+```sh
+git clone https://github.com/burntKernel/NothingOS-Arch_hyprland.git ~/NothingOS-Arch_hyprland
+cd ~/NothingOS-Arch_hyprland
+bash install.sh
+bash patches/apply.sh
+```
+
+The Fedora boot integration is optional and requires `sudo`:
+
+```sh
+sudo bash boot/fedora/install.sh
+sudo bash boot/fedora/uninstall.sh  # revert it later
+```
+
+The installers back up replaced user files in `~/.config/nothing-dotfiles-backup/`.
 
 ### Fonts (not included)
 
@@ -60,16 +113,9 @@ The look depends on fonts this repo cannot redistribute. Install them to `~/.loc
 
 Pango gotcha: a family name ending in a number is parsed as a size, so configs write `Ndot 57,` with a trailing comma.
 
-## Install
+## Common post-install steps
 
-```sh
-git clone https://github.com/uzayr-iqbal-hamid/nothing-os-dots-hyprland ~/nothing-os-dots-hyprland
-cd ~/nothing-os-dots-hyprland
-./install.sh          # copies configs into ~/.config (backs up what it replaces), scripts to ~/.local/bin, wallpapers to ~/Pictures
-./patches/apply.sh    # patches the four JaKooLit vendor files
-```
-
-Then:
+After either distribution-specific installation, complete these shared steps:
 
 1. **Icons**: `nothing-mono-icons.py` builds `~/.icons/Nothing-Mono` from `~/.icons/Flat-Remix-Blue-Dark` (about a minute, 50 MB). Re-run after installing apps so their icons get greyed too.
 2. **gsettings**:
@@ -129,8 +175,9 @@ Quickshell hot-reloads edits. Adding a new `IpcHandler` needs a full restart of 
 
 ## Boot chain (optional, needs sudo)
 
-`boot/install.sh` installs SDDM with the Nothing greeter (replacing GDM at next boot), the Plymouth
-theme, adds `rhgb quiet`, and hides the GRUB menu. Read `boot/README.md` first; `boot/uninstall.sh` reverts.
+`boot/arch/install.sh` is the single Arch installer and handles both desktop and boot integration.
+`boot/fedora/install.sh` remains the separate Fedora boot installer. Read `boot/README.md` first
+and use the matching uninstall script to revert.
 The greeter loads Ndot 57 and Lettera Mono from `boot/sddm/nothing/fonts/` because it runs as the
 `sddm` user and cannot see your home fonts. `install.sh` (this repo's, not boot's) copies them there from
 `~/.local/share/fonts/Nothing/` when present.
