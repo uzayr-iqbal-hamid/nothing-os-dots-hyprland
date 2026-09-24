@@ -1,6 +1,6 @@
 import QtQuick
 
-// Glyph lights switch for the control center, in the CaffeineTile style. Click toggles the lights;
+// Glyph lights switch for the control center, styled like the phone remote tile. Click toggles the lights;
 // right-click toggles music mode, shown as "· MUSIC" after the label.
 Rectangle {
     id: root

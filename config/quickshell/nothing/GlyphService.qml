@@ -177,8 +177,7 @@ Singleton {
         demoTimer.stop();
         demoStep = -1;
         pattern = null;
-        progress = -1;
-        countingDown = false;
+        clearProgress();
         levels = all(0);
     }
 
@@ -263,6 +262,7 @@ Singleton {
 
     property real timerEnd: 0
     property real timerLength: 0
+    readonly property bool timerRunning: timerEnd > 0
 
     function setProgress(percent: int) {
         if (!enabled)
@@ -300,6 +300,19 @@ Singleton {
         staleProgress.stop();
     }
 
+    // +1 minute while running; the strip keeps its place by stretching the total too.
+    function addTime(seconds: int) {
+        if (!timerRunning)
+            return;
+        timerEnd += seconds * 1000;
+        timerLength += seconds * 1000;
+    }
+
+    function doneMessage(ms) {
+        const minutes = Math.max(1, Math.round(ms / 60000));
+        return minutes === 1 ? "1 minute is up" : minutes + " minutes are up";
+    }
+
     // A script that dies mid-download never sends 100; don't leave the strip up forever.
     Timer {
         id: staleProgress
@@ -314,8 +327,12 @@ Singleton {
         onTriggered: {
             const left = root.timerEnd - Date.now();
             if (left <= 0) {
+                const length = root.timerLength;
                 root.clearProgress();
                 root.play("chase");
+                // The lights are easy to miss from across the room; the notification waits in swaync.
+                // (It lands mid-chase, so it doesn't start a second pattern.)
+                Quickshell.execDetached(["notify-send", "-a", "Glyph timer", "Timer done", root.doneMessage(length)]);
             } else {
                 root.progress = left / root.timerLength;
             }

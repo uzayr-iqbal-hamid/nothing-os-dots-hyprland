@@ -1,0 +1,47 @@
+--- a/swaync/config.json
++++ b/swaync/config.json
+@@ -1,6 +1,6 @@
+ {
+   "$schema": "/etc/xdg/swaync/configSchema.json",
+-  "positionX": "center",
++  "positionX": "right",
+   "positionY": "top",
+   "layer": "overlay",
+   "control-center-layer": "top",
+@@ -8,7 +8,7 @@
+   "cssPriority": "user",
+   "control-center-margin-top": 5,
+   "control-center-margin-bottom": 0,
+-  "control-center-margin-right": 0,
++  "control-center-margin-right": 14,
+   "control-center-margin-left": 0,
+   "notification-2fa-action": true,
+   "notification-inline-replies": false,
+@@ -28,15 +28,7 @@
+   "hide-on-clear": false,
+   "hide-on-action": true,
+   "script-fail-notify": true,
+-  "widgets": [
+-      "dnd",
+-      "buttons-grid",
+-      "mpris",
+-      "volume", 
+-      "backlight",
+-      "title",
+-      "notifications"
+-  ],
++  "widgets": ["mpris", "title", "notifications"],
+   "widget-config": {
+       "title": {
+           "text": "Notifications",
+@@ -51,8 +43,8 @@
+           "text": "Notification"
+       },
+       "mpris": {
+-          "image-size": 96,
+-          "image-radius": 8
++          "image-size": 44,
++          "image-radius": 6
+       },
+       "volume": {
+           "label": "󰕾"

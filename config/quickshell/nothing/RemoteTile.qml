@@ -91,7 +91,7 @@ Rectangle {
         anchors.left: phone.right
         anchors.leftMargin: Theme.gapS
         anchors.verticalCenter: phone.verticalCenter
-        text: root.installed ? "PHONE REMOTE" : "PHONE REMOTE · RUN INSTALL-SERVICE"
+        text: "PHONE REMOTE"
         color: root.active ? Theme.text : Theme.textDim
         font.family: Theme.fontLabel
         font.pixelSize: 9
@@ -135,6 +135,38 @@ Rectangle {
                 return;
             toggle.command = ["systemctl", "--user", root.active ? "stop" : "start", "hypr-remote"];
             toggle.running = true;
+        }
+    }
+
+    // Off, and stretched to match the column beside it: say what the switch is for.
+    Column {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 22 - Theme.gapXs
+        spacing: Theme.gapS
+        visible: opacity > 0
+        opacity: !root.active && root.height > 110 ? 1 : 0
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: Theme.animMed
+            }
+        }
+
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: Icons.phone
+            color: Theme.textFaint
+            font.family: Theme.fontIcon
+            font.pixelSize: 30
+        }
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: root.installed ? "SWITCH ON TO PAIR" : "NOT INSTALLED"
+            color: Theme.textFaint
+            font.family: Theme.fontLabel
+            font.pixelSize: 9
+            font.letterSpacing: Theme.labelSpacing
         }
     }
 

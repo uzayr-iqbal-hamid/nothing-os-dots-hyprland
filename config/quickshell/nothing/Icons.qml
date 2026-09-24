@@ -21,6 +21,7 @@ Singleton {
     readonly property string lock: glyph(0xF033E)
     readonly property string power: glyph(0xF0425)
     readonly property string bell: glyph(0xF009A)
+    readonly property string bellOff: glyph(0xF009B)
     readonly property string coffee: glyph(0xF0176)
     readonly property string phone: glyph(0xF011C) // cellphone
     readonly property string glyphLights: glyph(0xF0335) // lightbulb

@@ -78,8 +78,6 @@ PanelWindow {
         ColumnLayout {
             id: layout
 
-            readonly property real third: (width - 2 * spacing) / 3
-
             anchors.fill: parent
             anchors.margins: Theme.gapM
             spacing: Theme.gapS
@@ -89,39 +87,76 @@ PanelWindow {
                 Layout.bottomMargin: Theme.gapXs
             }
 
+            // Tiles and toggles on the left, the volume and brightness sliders standing beside them.
             RowLayout {
                 Layout.fillWidth: true
                 spacing: Theme.gapS
 
-                QuickTile {
-                    Layout.preferredWidth: layout.third
-                    icon: NetworkService.icon
-                    title: NetworkService.title
-                    subtitle: NetworkService.subtitle
-                    active: NetworkService.connected
-                    // wired: nothing to toggle, open the menu; wifi: toggle the radio
-                    onClicked: NetworkService.wired ? NetworkService.openMenu() : NetworkService.toggleWifi()
-                    onRightClicked: NetworkService.openMenu()
-                }
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: Theme.gapS
 
-                QuickTile {
-                    readonly property var adapter: Bluetooth.defaultAdapter
-                    readonly property var device: adapter?.devices.values.find(d => d.connected) ?? null
-
-                    Layout.preferredWidth: layout.third
-                    icon: adapter?.enabled ? Icons.bluetooth : Icons.bluetoothOff
-                    title: "Bluetooth"
-                    subtitle: !adapter ? "Unavailable" : !adapter.enabled ? "Off" : device ? device.name : "On"
-                    active: adapter?.enabled ?? false
-                    onClicked: {
-                        if (adapter)
-                            adapter.enabled = !adapter.enabled;
+                    QuickTile {
+                        Layout.fillWidth: true
+                        icon: NetworkService.icon
+                        title: NetworkService.title
+                        subtitle: NetworkService.subtitle
+                        active: NetworkService.connected
+                        // wired: nothing to toggle, open the menu; wifi: toggle the radio
+                        onClicked: NetworkService.wired ? NetworkService.openMenu() : NetworkService.toggleWifi()
+                        onRightClicked: NetworkService.openMenu()
                     }
-                    onRightClicked: panel.run(Config.bluetoothManager)
+
+                    QuickTile {
+                        readonly property var adapter: Bluetooth.defaultAdapter
+                        readonly property var device: adapter?.devices.values.find(d => d.connected) ?? null
+
+                        Layout.fillWidth: true
+                        icon: adapter?.enabled ? Icons.bluetooth : Icons.bluetoothOff
+                        title: "Bluetooth"
+                        subtitle: !adapter ? "Unavailable" : !adapter.enabled ? "Off" : device ? device.name : "On"
+                        active: adapter?.enabled ?? false
+                        onClicked: {
+                            if (adapter)
+                                adapter.enabled = !adapter.enabled;
+                        }
+                        onRightClicked: panel.run(Config.bluetoothManager)
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: Theme.gapS
+
+                        NightLightButton {
+                            Layout.fillWidth: true
+                        }
+                        IconButton {
+                            Layout.fillWidth: true
+                            icon: Icons.coffee
+                            active: ShellState.caffeine
+                            onClicked: ShellState.caffeine = !ShellState.caffeine
+                        }
+                        IconButton {
+                            Layout.fillWidth: true
+                            icon: Icons.lock
+                            onClicked: panel.run(Config.lockCommand)
+                        }
+                        IconButton {
+                            Layout.fillWidth: true
+                            icon: Icons.power
+                            onClicked: {
+                                ShellState.closeControlCenter();
+                                ShellState.openPowerMenu(panel.screen.name);
+                            }
+                        }
+                    }
                 }
 
-                VolumeTile {
-                    Layout.preferredWidth: layout.third
+                VolumePill {
+                    Layout.fillHeight: true
+                }
+                BrightnessPill {
+                    Layout.fillHeight: true
                 }
             }
 
@@ -133,53 +168,23 @@ PanelWindow {
                 Layout.fillWidth: true
                 spacing: Theme.gapS
 
-                NightLightCard {
-                    Layout.preferredWidth: (layout.width - Theme.gapS) * 0.4
-                }
-                StatsCard {
-                    Layout.fillWidth: true
-                }
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: Theme.gapS
-
-                // Half width each; the remote grows downward when it shows its QR code.
+                // Half width each. The remote grows to show its QR code; the right column is the
+                // glyph switch over the glyph timer, stretched to match it.
                 RemoteTile {
                     Layout.preferredWidth: (layout.width - Theme.gapS) / 2
-                    Layout.alignment: Qt.AlignTop
+                    Layout.fillHeight: true
                 }
-                GlyphTile {
+                ColumnLayout {
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignTop
-                }
-            }
+                    Layout.fillHeight: true
+                    spacing: Theme.gapS
 
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: Theme.gapS
-
-                CaffeineTile {
-                    Layout.fillWidth: true
-                }
-                IconButton {
-                    icon: Icons.lock
-                    onClicked: panel.run(Config.lockCommand)
-                }
-                IconButton {
-                    icon: Icons.power
-                    onClicked: {
-                        ShellState.closeControlCenter();
-                        ShellState.openPowerMenu(panel.screen.name);
+                    GlyphTile {
+                        Layout.fillWidth: true
                     }
-                }
-                IconButton {
-                    icon: Icons.bell
-                    badge: NotificationService.count > 0
-                    onClicked: {
-                        ShellState.closeControlCenter();
-                        NotificationService.togglePanel();
+                    TimerCard {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                     }
                 }
             }

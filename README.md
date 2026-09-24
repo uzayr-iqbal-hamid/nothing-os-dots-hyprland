@@ -5,7 +5,7 @@ custom [Quickshell](https://quickshell.org) shell. Black surfaces, white text, o
 (`#D71921`), dot-matrix clocks, monochrome icons, and generated grainy geometric wallpapers.
 
 The base install is [JaKooLit's Hyprland-Dots](https://github.com/JaKooLit/Hyprland-Dots); everything
-here layers on top of it. Only four upstream files are touched, and those changes ship as patches.
+here layers on top of it. Only five upstream files are touched, and those changes ship as patches.
 
 ![Desktop: pill bar, calendar / bluetooth / media / screen-time widgets, Ndot clock, auto-hide dock](screenshots/desktop.png)
 
@@ -22,7 +22,7 @@ here layers on top of it. Only four upstream files are touched, and those change
 | Hyprland scripts | `config/hypr/UserScripts/` | wallpaper generator + per-monitor apply, media-key OSD, idle suspend, overview toggle |
 | Idle / lock | `config/hypr/hypridle.conf`, `hyprlock.conf` | dim 5 min, lock 10, screens off 11, suspend 30 (on battery only); Ndot lock clock |
 | Launcher | `config/rofi/` | `nothing.rasi` list theme + `nothing-grid.rasi` 6x3 app grid (Super+D) |
-| Notifications | `config/swaync/style.css` | overrides swaync's stock CSS variables |
+| Notifications | `config/swaync/style.css` | overrides swaync's stock CSS variables; the widget list and position ship as `patches/swaync-config.json.patch` |
 | Terminal | `config/kitty/`, `config/starship.toml`, `config/fastfetch/`, `config/btop/`, `config/yazi/` | Lettera Mono, dot prompt, dot-matrix fetch logo, monochrome btop / yazi |
 | GTK / Qt | `config/gtk-3.0`, `gtk-4.0`, `Kvantum/Nothing`, `qt6ct`, `qt5ct` | adw-gtk3-dark + libadwaita colours, Kvantum theme, Qt colour scheme |
 | Static palette | `config/wallust/templates/` | wallust templates with fixed hex values, so KooL's wallpaper scripts keep writing the Nothing palette |
@@ -30,7 +30,7 @@ here layers on top of it. Only four upstream files are touched, and those change
 | Wallpapers | `wallpapers/`, `config/hypr/UserScripts/NothingWallpaper.py` | 5 compositions x dark/light at 1080p; generator renders any size |
 | Boot chain | `boot/` | SDDM greeter theme (QML), Plymouth script theme, hidden GRUB menu, `install.sh` (sudo) |
 | Apps | `apps/` | Zen browser userChrome, Obsidian CSS snippet, Chrome theme pack, Spotify (spicetify) theme in `config/spicetify` |
-| Upstream patches | `patches/` | the four JaKooLit files that had to change, as diffs |
+| Upstream patches | `patches/` | the five JaKooLit files that had to change, as diffs |
 | Shell rc | `shell/zshrc-nothing.zsh` | starship + fastfetch lines for `.zshrc` |
 
 ## Requirements
@@ -67,7 +67,7 @@ Pango gotcha: a family name ending in a number is parsed as a size, so configs w
 git clone https://github.com/uzayr-iqbal-hamid/nothing-os-dots-hyprland ~/nothing-os-dots-hyprland
 cd ~/nothing-os-dots-hyprland
 ./install.sh          # copies configs into ~/.config (backs up what it replaces), scripts to ~/.local/bin, wallpapers to ~/Pictures
-./patches/apply.sh    # patches the four JaKooLit vendor files
+./patches/apply.sh    # patches the five JaKooLit vendor files
 ```
 
 Then:
@@ -99,12 +99,12 @@ Then:
 holds every colour, font, radius and timing, and `Config.qml` holds user settings (clock format,
 weather location, which output gets the widgets and the dock, OSD timing, backlight device, click actions).
 
-- **Bar**: floating black pill per monitor. Workspace dots, weather chip (Open-Meteo, located by IP unless you set lat/lon in `Config.qml`), clock, network, volume, battery. Click the clock for the control center.
-- **Control center**: Ndot clock, network / bluetooth tiles, volume, media card with waveform and album tint, night light (hyprsunset), CPU / RAM / GPU / temp, caffeine (idle inhibitor), glyph lights switch, phone remote switch, lock / power / notifications.
+- **Bar**: floating black pill per monitor. Workspace dots, notification bell (click for the panel, right-click for do not disturb, red dot for unread), clock, network, volume, battery. Click the clock for the control center.
+- **Control center**: Ndot clock, network / bluetooth tiles, tall volume and brightness sliders (click the speaker to mute), night light (hyprsunset) / caffeine (idle inhibitor) / lock / power buttons, media card with waveform and album tint, glyph lights switch, phone remote switch.
 - **Desktop widgets** (laptop screen, under windows): calendar tile, bluetooth tile, media, screen time (tracked by the shell itself, saved daily).
 - **Dock**: auto-hide bottom pill with monochrome icons; shows on empty workspaces or when the pointer dwells on the bottom edge. Right-click to pin / unpin.
 - **OSD**: dot-matrix volume / mic / brightness pill; media keys are rebound to `UserScripts/Volume.sh` and `Brightness.sh`.
-- **Glyph lights**: thin light strips along every screen's edges, after the Glyph Interface on Nothing phones. Notifications play a pattern chosen per app (`glyphPatterns` in `Config.qml`: pulse, double, chase, breathe, rise, sparkle or none); critical ones pulse red; nothing lights while do-not-disturb is on. The bottom strip is a progress bar for scripts and timers, and music mode (right-click the control center tile) drives the strips from `cava`. The layer is click-through and unmapped whenever it's dark.
+- **Glyph lights**: thin light strips along every screen's edges, after the Glyph Interface on Nothing phones. Notifications play a pattern chosen per app (`glyphPatterns` in `Config.qml`: pulse, double, chase, breathe, rise, sparkle or none); critical ones pulse red; nothing lights while do-not-disturb is on. The bottom strip is a progress bar for scripts, and a countdown for the timer card under the control center's glyph switch (5 / 15 / 25 / 45 minutes, +1 minute, stop; it ends with a chase and a notification). Music mode (right-click the control center tile) drives the strips from `cava`. The layer is click-through and unmapped whenever it's dark.
 - **Phone remote**: the control center tile for [hypr-remote](https://github.com/uzayr-iqbal-hamid/hypr-remote), a separate project that lets your phone control this desktop over home Wi-Fi (workspaces, windows, media, volume, clipboard, screen preview, touchpad). The switch starts and stops its `hypr-remote` systemd user service; while it runs, the tile shows the pairing QR code to scan with your phone. Without hypr-remote installed the tile says so and does nothing else.
 - **Power menu**: fullscreen, Ndot clock, Lock / Sleep / Log out / Restart / Shut down (destructive ones need a second press). `Ctrl+Alt+P`.
 
