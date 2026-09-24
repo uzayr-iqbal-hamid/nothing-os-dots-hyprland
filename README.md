@@ -9,9 +9,11 @@ here layers on top of it. Only five upstream files are touched, and those change
 
 ![Desktop: pill bar, calendar / bluetooth / media / screen-time widgets, Ndot clock, auto-hide dock](screenshots/desktop.png)
 
-| Control center (click the clock) | Power menu (Ctrl+Alt+P) |
+| Control center (click the clock) | Notifications (click the bell) |
 | --- | --- |
-| ![Control center](screenshots/control-center.png) | ![Power menu](screenshots/power-menu.png) |
+| ![Control center](screenshots/control-center.png) | ![Notifications](screenshots/notifications.png) |
+| **Lock screen** | **Power menu (Ctrl+Alt+P)** |
+| ![Lock screen](screenshots/lock-screen.png) | ![Power menu](screenshots/power-menu.png) |
 
 ## What is in here
 
