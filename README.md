@@ -99,10 +99,11 @@ holds every colour, font, radius and timing, and `Config.qml` holds user setting
 weather location, which output gets the widgets and the dock, OSD timing, backlight device, click actions).
 
 - **Bar**: floating black pill per monitor. Workspace dots, weather chip (Open-Meteo, located by IP unless you set lat/lon in `Config.qml`), clock, network, volume, battery. Click the clock for the control center.
-- **Control center**: Ndot clock, network / bluetooth tiles, volume, media card with waveform and album tint, night light (hyprsunset), CPU / RAM / GPU / temp, caffeine (idle inhibitor), lock / power / notifications.
+- **Control center**: Ndot clock, network / bluetooth tiles, volume, media card with waveform and album tint, night light (hyprsunset), CPU / RAM / GPU / temp, caffeine (idle inhibitor), phone remote switch, lock / power / notifications.
 - **Desktop widgets** (laptop screen, under windows): calendar tile, bluetooth tile, media, screen time (tracked by the shell itself, saved daily).
 - **Dock**: auto-hide bottom pill with monochrome icons; shows on empty workspaces or when the pointer dwells on the bottom edge. Right-click to pin / unpin.
 - **OSD**: dot-matrix volume / mic / brightness pill; media keys are rebound to `UserScripts/Volume.sh` and `Brightness.sh`.
+- **Phone remote**: the control center tile for [hypr-remote](https://github.com/uzayr-iqbal-hamid/hypr-remote), a separate project that lets your phone control this desktop over home Wi-Fi (workspaces, windows, media, volume, clipboard, screen preview, touchpad). The switch starts and stops its `hypr-remote` systemd user service; while it runs, the tile shows the pairing QR code to scan with your phone. Without hypr-remote installed the tile says so and does nothing else.
 - **Power menu**: fullscreen, Ndot clock, Lock / Sleep / Log out / Restart / Shut down (destructive ones need a second press). `Ctrl+Alt+P`.
 
 IPC, from any terminal:
