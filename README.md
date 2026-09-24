@@ -41,6 +41,7 @@ Tested on Fedora 44, Hyprland 0.55, Quickshell 0.3.1 (git), Qt 6.11.
 - `quickshell` (the COPR `quickshell-git` build; the packaged 0.3.0 crashed after Qt 6.11)
 - `hypridle`, `hyprlock`, `hyprsunset`, `swww`, `rofi` (2.x), `swaync`, `kitty`, `wallust`
 - `brightnessctl`, `wireplumber` (`wpctl`), `pavucontrol`, `blueman`, `nvtop` (GPU % in the stats card)
+- `cava` and `dbus-tools` (`dbus-monitor`) for the glyph lights' music mode and per-app notification patterns
 - `python3-pillow` (wallpapers, icons, fetch logo), `starship`, `fastfetch`, `btop`, `yazi`
 - `kvantum`, `qt6ct`, `qt5ct`, [adw-gtk3](https://github.com/lassekongo83/adw-gtk3) (in `~/.local/share/themes` or system-wide)
 - Cursor `Bibata-Modern-Ice`, base icon theme `Flat-Remix-Blue-Dark` (any theme works as the input to the generator)
@@ -99,10 +100,11 @@ holds every colour, font, radius and timing, and `Config.qml` holds user setting
 weather location, which output gets the widgets and the dock, OSD timing, backlight device, click actions).
 
 - **Bar**: floating black pill per monitor. Workspace dots, weather chip (Open-Meteo, located by IP unless you set lat/lon in `Config.qml`), clock, network, volume, battery. Click the clock for the control center.
-- **Control center**: Ndot clock, network / bluetooth tiles, volume, media card with waveform and album tint, night light (hyprsunset), CPU / RAM / GPU / temp, caffeine (idle inhibitor), phone remote switch, lock / power / notifications.
+- **Control center**: Ndot clock, network / bluetooth tiles, volume, media card with waveform and album tint, night light (hyprsunset), CPU / RAM / GPU / temp, caffeine (idle inhibitor), glyph lights switch, phone remote switch, lock / power / notifications.
 - **Desktop widgets** (laptop screen, under windows): calendar tile, bluetooth tile, media, screen time (tracked by the shell itself, saved daily).
 - **Dock**: auto-hide bottom pill with monochrome icons; shows on empty workspaces or when the pointer dwells on the bottom edge. Right-click to pin / unpin.
 - **OSD**: dot-matrix volume / mic / brightness pill; media keys are rebound to `UserScripts/Volume.sh` and `Brightness.sh`.
+- **Glyph lights**: thin light strips along every screen's edges, after the Glyph Interface on Nothing phones. Notifications play a pattern chosen per app (`glyphPatterns` in `Config.qml`: pulse, double, chase, breathe, rise, sparkle or none); critical ones pulse red; nothing lights while do-not-disturb is on. The bottom strip is a progress bar for scripts and timers, and music mode (right-click the control center tile) drives the strips from `cava`. The layer is click-through and unmapped whenever it's dark.
 - **Phone remote**: the control center tile for [hypr-remote](https://github.com/uzayr-iqbal-hamid/hypr-remote), a separate project that lets your phone control this desktop over home Wi-Fi (workspaces, windows, media, volume, clipboard, screen preview, touchpad). The switch starts and stops its `hypr-remote` systemd user service; while it runs, the tile shows the pairing QR code to scan with your phone. Without hypr-remote installed the tile says so and does nothing else.
 - **Power menu**: fullscreen, Ndot clock, Lock / Sleep / Log out / Restart / Shut down (destructive ones need a second press). `Ctrl+Alt+P`.
 
@@ -114,6 +116,11 @@ qs ipc -c nothing call powermenu toggle|open|close|openOn <output>
 qs ipc -c nothing call dock toggle|open|close
 qs ipc -c nothing call caffeine toggle|get
 qs ipc -c nothing call osd volume|mic|brightness
+qs ipc -c nothing call glyph play pulse|double|chase|breathe|rise|sparkle|critical|done
+qs ipc -c nothing call glyph progress <0-100>     # 100 finishes with a flash
+qs ipc -c nothing call glyph timer <seconds>      # the bottom strip drains, then a chase
+qs ipc -c nothing call glyph demo|clear|toggle|get
+qs ipc -c nothing call glyph music true|false
 ```
 
 Quickshell hot-reloads edits. Adding a new `IpcHandler` needs a full restart of `qs -c nothing`.

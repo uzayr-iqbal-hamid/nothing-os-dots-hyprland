@@ -38,6 +38,32 @@ Singleton {
     readonly property int osdMarginBottom: 90
     readonly property string backlightDevice: "intel_backlight"
 
+    // Glyph lights (GlyphService.qml): strip thickness, distance from the edge, how far the glow
+    // spills in, room left at the corners, and the gap in the top strips for the bar (logical px).
+    // Empty glyphScreens = every screen.
+    readonly property int glyphThickness: 4
+    readonly property int glyphInset: 3
+    readonly property int glyphGlow: 36
+    readonly property int glyphCornerGap: 48
+    readonly property int glyphTopGap: 640
+    readonly property list<string> glyphScreens: []
+
+    // Notification pattern per app, matched on the app name (lowercase; a substring also matches).
+    // Patterns: pulse, double, chase, breathe, rise, sparkle, or none. Critical notifications always
+    // pulse red. Try one with: qs ipc -c nothing call glyph play chase
+    readonly property var glyphPatterns: ({
+            "discord": "chase",
+            "vesktop": "chase",
+            "whatsapp": "double",
+            "telegram": "double",
+            "signal": "double",
+            "thunderbird": "rise",
+            "zen": "breathe",
+            "firefox": "breathe",
+            "spotify": "none",
+            "default": "pulse"
+        })
+
     // Click actions (run through sh, so $HOME works)
     readonly property string wifiMenu: "$HOME/.config/waybar/scripts/rofi-wifi.sh"
     readonly property string mixer: "pavucontrol"

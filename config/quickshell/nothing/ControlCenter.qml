@@ -141,8 +141,19 @@ PanelWindow {
                 }
             }
 
-            RemoteTile {
+            RowLayout {
                 Layout.fillWidth: true
+                spacing: Theme.gapS
+
+                // Half width each; the remote grows downward when it shows its QR code.
+                RemoteTile {
+                    Layout.preferredWidth: (layout.width - Theme.gapS) / 2
+                    Layout.alignment: Qt.AlignTop
+                }
+                GlyphTile {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+                }
             }
 
             RowLayout {

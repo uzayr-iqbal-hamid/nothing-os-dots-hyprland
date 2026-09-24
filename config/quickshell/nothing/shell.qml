@@ -50,6 +50,14 @@ ShellRoot {
             }
 
             LazyLoader {
+                active: Config.glyphScreens.length === 0 || Config.glyphScreens.includes(perScreen.modelData.name)
+
+                Glyph {
+                    screen: perScreen.modelData
+                }
+            }
+
+            LazyLoader {
                 active: perScreen.modelData.name === Config.dockScreen
 
                 Dock {
@@ -146,6 +154,43 @@ ShellRoot {
         }
         function get(): bool {
             return ShellState.caffeine;
+        }
+    }
+
+    // Glyph lights. Scripts can drive them:
+    //   qs ipc -c nothing call glyph play chase       (pulse|double|chase|breathe|rise|sparkle|critical|done)
+    //   qs ipc -c nothing call glyph progress 40      (0-100 on the bottom strip; 100 finishes it)
+    //   qs ipc -c nothing call glyph timer 300        (seconds; the strip drains, then a chase)
+    //   qs ipc -c nothing call glyph clear | demo | toggle | set true | get | music true
+    IpcHandler {
+        target: "glyph"
+
+        function play(pattern: string): void {
+            GlyphService.play(pattern);
+        }
+        function progress(percent: int): void {
+            GlyphService.setProgress(percent);
+        }
+        function timer(seconds: int): void {
+            GlyphService.startTimer(seconds);
+        }
+        function clear(): void {
+            GlyphService.stop();
+        }
+        function demo(): void {
+            GlyphService.demo();
+        }
+        function toggle(): void {
+            GlyphService.setEnabled(!GlyphService.enabled);
+        }
+        function set(enabled: bool): void {
+            GlyphService.setEnabled(enabled);
+        }
+        function get(): bool {
+            return GlyphService.enabled;
+        }
+        function music(enabled: bool): void {
+            GlyphService.setMusic(enabled);
         }
     }
 
