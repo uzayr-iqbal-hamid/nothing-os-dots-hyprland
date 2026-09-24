@@ -42,7 +42,8 @@ Tested on Fedora 44, Hyprland 0.55, Quickshell 0.3.1 (git), Qt 6.11.
 - JaKooLit Hyprland-Dots (v2.3.19 or newer) already installed
 - `quickshell` (the COPR `quickshell-git` build; the packaged 0.3.0 crashed after Qt 6.11)
 - `hypridle`, `hyprlock`, `hyprsunset`, `swww`, `rofi` (2.x), `swaync`, `kitty`, `wallust`
-- `brightnessctl`, `wireplumber` (`wpctl`), `pavucontrol`, `blueman`, `nvtop` (GPU % in the stats card)
+- `brightnessctl`, `wireplumber` (`wpctl`), `pavucontrol`, `blueman`
+- `wf-recorder` (screen recorder), `hyprpicker` (colour picker), `grim` + `slurp` (screenshots), ImageMagick (colour swatch in the picker's notification, optional)
 - `cava` and `dbus-tools` (`dbus-monitor`) for the glyph lights' music mode and per-app notification patterns
 - `python3-pillow` (wallpapers, icons, fetch logo), `starship`, `fastfetch`, `btop`, `yazi`
 - `kvantum`, `qt6ct`, `qt5ct`, [adw-gtk3](https://github.com/lassekongo83/adw-gtk3) (in `~/.local/share/themes` or system-wide)
@@ -102,7 +103,8 @@ holds every colour, font, radius and timing, and `Config.qml` holds user setting
 weather location, which output gets the widgets and the dock, OSD timing, backlight device, click actions).
 
 - **Bar**: floating black pill per monitor. Workspace dots, notification bell (click for the panel, right-click for do not disturb, red dot for unread), clock, network, volume, battery. Click the clock for the control center.
-- **Control center**: Ndot clock, network / bluetooth tiles, tall volume and brightness sliders (click the speaker to mute), night light (hyprsunset) / caffeine (idle inhibitor) / lock / power buttons, media card with waveform and album tint, glyph lights switch, phone remote switch.
+- **Control center**: Ndot clock, network / bluetooth tiles, a sound output switcher, tall volume and brightness sliders (click the speaker to mute), a row of buttons (night light, caffeine, mic mute, screen recorder, screenshot, colour picker, lock, power), media card with waveform and album tint, glyph lights switch, phone remote switch. Right-click the recorder to record a region, the screenshot button for the whole screen. The pencil at the top right turns on edit mode: every tile, slider, button and card sits on an 8-column grid and can be dragged anywhere. An outline shows where it will land, same-size pieces swap, and anything else in the way moves down. Saved in `controlcenter.json` in the state dir; RESET restores the default. Spans and the default arrangement are in `CcLayout.qml`.
+- **Screen recorder**: `wf-recorder` with desktop audio, saved to `~/Videos/Recordings`. While it runs the bar shows a red REC timer; click it to stop, and a notification opens the video.
 - **Desktop widgets** (laptop screen, under windows): calendar tile, bluetooth tile, media, screen time (tracked by the shell itself, saved daily).
 - **Dock**: auto-hide bottom pill with monochrome icons; shows on empty workspaces or when the pointer dwells on the bottom edge. Right-click to pin / unpin.
 - **OSD**: dot-matrix volume / mic / brightness pill; media keys are rebound to `UserScripts/Volume.sh` and `Brightness.sh`.
@@ -117,6 +119,7 @@ qs ipc -c nothing call controlcenter toggle|open|close
 qs ipc -c nothing call powermenu toggle|open|close|openOn <output>
 qs ipc -c nothing call dock toggle|open|close
 qs ipc -c nothing call caffeine toggle|get
+qs ipc -c nothing call recorder toggle|region|stop|get
 qs ipc -c nothing call osd volume|mic|brightness
 qs ipc -c nothing call glyph play pulse|double|chase|breathe|rise|sparkle|critical|done
 qs ipc -c nothing call glyph progress <0-100>     # 100 finishes with a flash

@@ -137,8 +137,10 @@ Singleton {
         onTriggered: root.settle()
     }
 
+    // Saved every tick, and never during shutdown: by the time objects are destroyed on quit,
+    // Qt's worker threads are gone and starting a file write segfaults. A quit loses at most one tick.
     Timer {
-        interval: 60000
+        interval: root.tickSeconds * 1000
         running: root.ready
         repeat: true
         onTriggered: root.save()
@@ -165,14 +167,5 @@ Singleton {
                 console.warn("screen time: couldn't read", path, FileViewError.toString(error));
             root.ready = true; // first run: nothing saved yet
         }
-    }
-
-    // shutdown: keep what was counted since the last save
-    Component.onDestruction: {
-        try {
-            settle();
-            save();
-            file.waitForJob();
-        } catch (e) {}
     }
 }

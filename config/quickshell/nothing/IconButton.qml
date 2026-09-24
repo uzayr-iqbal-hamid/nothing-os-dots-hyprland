@@ -10,6 +10,7 @@ Rectangle {
     property bool active: false
 
     signal clicked
+    signal rightClicked
 
     implicitWidth: 44
     implicitHeight: 44
@@ -46,6 +47,7 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: root.clicked()
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: mouse => mouse.button === Qt.RightButton ? root.rightClicked() : root.clicked()
     }
 }

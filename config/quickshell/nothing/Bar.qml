@@ -53,6 +53,9 @@ PanelWindow {
             BellChip {
                 anchors.verticalCenter: parent.verticalCenter
             }
+            RecordChip {
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
         BarClock {

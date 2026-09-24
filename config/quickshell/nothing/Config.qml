@@ -71,4 +71,12 @@ Singleton {
     readonly property string nightLight: "$HOME/.config/hypr/scripts/Hyprsunset.sh"
     readonly property string lockCommand: "$HOME/.config/hypr/scripts/LockScreen.sh"
     readonly property string powerMenu: "$HOME/.config/hypr/scripts/Wlogout.sh"
+    // KooL's screenshot script: --area for a selection, --now for the whole screen
+    readonly property string screenshotCommand: "$HOME/.config/hypr/scripts/ScreenShot.sh"
+    // hyprpicker copies the colour itself; this adds a notification with a swatch of it
+    readonly property string colorPickerCommand: "hex=$(hyprpicker -a -f hex) && [ -n \"$hex\" ] && swatch=\"${XDG_RUNTIME_DIR:-/tmp}/nothing-swatch.png\" && { magick -size 64x64 \"xc:$hex\" \"$swatch\" 2>/dev/null || swatch=color-select; } && notify-send -a 'Colour picker' -i \"$swatch\" \"$hex\" 'Copied to the clipboard'"
+
+    // Screen recorder (wf-recorder). Desktop audio comes from the current output's monitor.
+    readonly property string recordingsDir: "$HOME/Videos/Recordings"
+    readonly property bool recordAudio: true
 }

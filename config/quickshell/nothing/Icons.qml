@@ -35,6 +35,16 @@ Singleton {
     readonly property string sleep: glyph(0xF0904) // moon (power_sleep)
     readonly property string logout: glyph(0xF0343)
     readonly property string restart: glyph(0xF0709)
+    readonly property string record: glyph(0xF044A) // filled circle
+    readonly property string stop: glyph(0xF04DB)
+    readonly property string screenshot: glyph(0xF0E51) // monitor with crop marks
+    readonly property string colorPicker: glyph(0xF020A) // eyedropper
+    readonly property string speaker: glyph(0xF04C3)
+    readonly property string headphones: glyph(0xF02CB)
+    readonly property string chevronDown: glyph(0xF0140)
+    readonly property string pencil: glyph(0xF03EB)
+    readonly property string check: glyph(0xF012C)
+    readonly property string grip: glyph(0xF01DF) // two columns of dots
 
     // BlueZ device icon name (audio-headset, input-mouse, ...) -> glyph
     function btDevice(icon) {

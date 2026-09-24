@@ -8,6 +8,8 @@ Rectangle {
     property string title
     property string subtitle
     property bool active
+    property string trailing // optional glyph at the right edge, e.g. a chevron
+    property real trailingRotation: 0
 
     signal clicked
     signal rightClicked
@@ -41,11 +43,31 @@ Rectangle {
         }
     }
 
+    Text {
+        id: trailingGlyph
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.gapM
+        anchors.verticalCenter: parent.verticalCenter
+        visible: root.trailing !== ""
+        text: root.trailing
+        rotation: root.trailingRotation
+        color: root.active ? Theme.pillText : Theme.textDim
+        font.family: Theme.fontIcon
+        font.pixelSize: 14
+
+        Behavior on rotation {
+            NumberAnimation {
+                duration: Theme.animMed
+                easing.type: Theme.easing
+            }
+        }
+    }
+
     Column {
         anchors.left: badge.right
         anchors.leftMargin: Theme.gapS
-        anchors.right: parent.right
-        anchors.rightMargin: Theme.gapM
+        anchors.right: root.trailing !== "" ? trailingGlyph.left : parent.right
+        anchors.rightMargin: root.trailing !== "" ? Theme.gapS : Theme.gapM
         anchors.verticalCenter: parent.verticalCenter
         spacing: 2
 

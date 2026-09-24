@@ -143,6 +143,24 @@ ShellRoot {
     }
 
     // qs ipc -c nothing call caffeine toggle|set true|get
+    // qs ipc -c nothing call recorder toggle|region|stop
+    IpcHandler {
+        target: "recorder"
+
+        function toggle(): void {
+            RecorderService.toggle();
+        }
+        function region(): void {
+            RecorderService.start(true);
+        }
+        function stop(): void {
+            RecorderService.stop();
+        }
+        function get(): bool {
+            return RecorderService.recording;
+        }
+    }
+
     IpcHandler {
         target: "caffeine"
 
