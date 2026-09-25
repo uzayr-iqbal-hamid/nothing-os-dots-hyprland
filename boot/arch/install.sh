@@ -39,10 +39,15 @@ elif (( INSTALL_PACKAGES || INSTALL_BOOT )); then
 fi
 
 packages=(
-  hyprland hypridle hyprlock hyprsunset swww rofi-wayland swaync kitty wallust
+  hyprland hypridle hyprlock hyprsunset awww rofi swaync kitty
   brightnessctl wireplumber pavucontrol blueman nvtop python python-pillow
-  starship fastfetch btop yazi kvantum qt5ct qt6ct adw-gtk3
+  starship fastfetch btop yazi kvantum qt5ct qt6ct adw-gtk-theme
   xdg-desktop-portal-hyprland polkit-kde-agent
+)
+
+aur_packages=(
+  quickshell-git
+  wallust
 )
 
 install_boot() {
@@ -125,7 +130,7 @@ if (( INSTALL_PACKAGES )); then
   $SUDO pacman -Syu --needed "${packages[@]}"
 fi
 
-if (( INSTALL_AUR )) && ! command -v qs >/dev/null; then
+if (( INSTALL_AUR )); then
   aur_helper=""
   if command -v paru >/dev/null; then
     aur_helper=paru
@@ -133,10 +138,10 @@ if (( INSTALL_AUR )) && ! command -v qs >/dev/null; then
     aur_helper=yay
   fi
   if [[ -n $aur_helper ]]; then
-    echo "== Quickshell"
-    "$aur_helper" -S --needed quickshell-git
+    echo "== AUR packages (Quickshell + wallust)"
+    "$aur_helper" -S --needed "${aur_packages[@]}"
   else
-    echo "Quickshell was not installed: install quickshell-git with paru or yay."
+    echo "AUR packages were not installed: install quickshell-git and wallust with paru or yay."
   fi
 fi
 

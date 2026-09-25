@@ -47,10 +47,6 @@ Tested on Arch Linux and Fedora 44, Hyprland 0.55, Quickshell 0.3.1 (git), Qt 6.
 
 ## Choose your distribution
 
-The repository is developed from Windows, but installation must run on Linux. Windows can edit or
-clone the repository, but it cannot run `pacman`, `dnf`, SDDM, Plymouth, or systemd services.
-Use a real installation, VM, live USB, or suitable WSL environment.
-
 Both installers install the same Nothing OS desktop configuration. Only package installation and
 system boot integration differ between Arch Linux and Fedora.
 
@@ -63,8 +59,8 @@ The Arch installer is the complete Arch path. It installs packages, Quickshell w
 is available, the user configuration, SDDM, and Plymouth:
 
 ```sh
-git clone https://github.com/burntKernel/NothingOS-Arch_hyprland.git ~/NothingOS-Arch_hyprland
-cd ~/NothingOS-Arch_hyprland
+git clone https://github.com/uzayr-iqbal-hamid/nothing-os-dots-hyprland.git ~/nothing-os-dots-hyprland
+cd ~/nothing-os-dots-hyprland
 bash boot/arch/install.sh
 ```
 
@@ -83,8 +79,8 @@ Fedora uses the existing JaKooLit/Fedora environment and the shared user-level i
 following from the repository after installing the requirements listed above:
 
 ```sh
-git clone https://github.com/burntKernel/NothingOS-Arch_hyprland.git ~/NothingOS-Arch_hyprland
-cd ~/NothingOS-Arch_hyprland
+git clone https://github.com/uzayr-iqbal-hamid/nothing-os-dots-hyprland.git ~/nothing-os-dots-hyprland
+cd ~/nothing-os-dots-hyprland
 bash install.sh
 bash patches/apply.sh
 ```
