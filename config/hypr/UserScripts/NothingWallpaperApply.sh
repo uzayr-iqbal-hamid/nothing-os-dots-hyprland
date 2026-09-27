@@ -11,9 +11,10 @@ declare -A pick=(
   [HDMI-A-1]="nothing-05-arc-$mode-1920x1080.png"
 )
 opts=(--transition-type fade --transition-duration 0.6)
-for out in $(swww query | cut -d: -f2 | tr -d ' '); do
+ww=$(command -v awww || command -v swww) # swww was renamed awww; Arch only ships awww
+for out in $("$ww" query | cut -d: -f2 | tr -d ' '); do
   img="$dir/${pick[$out]:-nothing-01-shapes-$mode-1920x1080.png}"
-  [[ -f $img ]] && swww img -o "$out" "$img" "${opts[@]}"
+  [[ -f $img ]] && "$ww" img -o "$out" "$img" "${opts[@]}"
 done
 main="$dir/${pick[eDP-1]}"
 ln -sfn "$main" "$HOME/.config/rofi/.current_wallpaper"

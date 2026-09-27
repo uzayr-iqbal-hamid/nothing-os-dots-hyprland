@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Revert install.sh: GDM back as display manager, plymouth back to bgrt, GRUB menu visible again.
+# Revert the Fedora boot installer: GDM back as display manager, plymouth back to bgrt,
+# and the GRUB menu visible again.
 # Packages stay installed; "rhgb quiet" stays on the kernel command line (Fedora's default anyway).
 set -euo pipefail
 [[ $EUID -eq 0 ]] || { echo "run with sudo"; exit 1; }

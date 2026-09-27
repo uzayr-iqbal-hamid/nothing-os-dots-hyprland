@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Nothing OS boot chain for Fedora: SDDM with the Nothing greeter (replacing GDM at next boot),
 # the Nothing plymouth theme, and Fedora's hidden GRUB menu.
-#   sudo ~/.local/share/nothing-boot/install.sh [--x11] [--no-sddm] [--no-plymouth] [--no-grub] [--keep-cmdline]
+#   sudo ~/.local/share/nothing-boot/fedora/install.sh [--x11] [--no-sddm] [--no-plymouth] [--no-grub] [--keep-cmdline]
 # --x11           use the Xorg greeter (sddm-x11) instead of the Wayland one (sddm-wayland-generic, weston)
 # --keep-cmdline  do not add "rhgb quiet" to the kernel command line (plymouth stays invisible without rhgb)
 # Nothing here stops the running session: GDM keeps running until you reboot. Undo with uninstall.sh.
 set -euo pipefail
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BOOT="$(cd "$SRC/.." && pwd)"
 [[ $EUID -eq 0 ]] || { echo "run with sudo"; exit 1; }
 DO_SDDM=1 DO_PLY=1 DO_GRUB=1 GREETER=wayland KEEP_CMDLINE=0
 for a in "$@"; do
@@ -21,7 +22,7 @@ if (( DO_SDDM )); then
   echo "== SDDM ($GREETER greeter)"
   if [[ $GREETER == x11 ]]; then dnf install -y sddm sddm-x11; else dnf install -y sddm sddm-wayland-generic; fi
   rm -rf /usr/share/sddm/themes/nothing
-  cp -r "$SRC/sddm/nothing" /usr/share/sddm/themes/nothing
+  cp -r "$BOOT/sddm/nothing" /usr/share/sddm/themes/nothing
   rm -f /usr/share/sddm/themes/nothing/preview.qml
   chmod -R a+rX /usr/share/sddm/themes/nothing
   mkdir -p /etc/sddm.conf.d
@@ -45,7 +46,7 @@ if (( DO_PLY )); then
   echo "== plymouth"
   dnf install -y plymouth-plugin-script
   rm -rf /usr/share/plymouth/themes/nothing
-  cp -r "$SRC/plymouth/nothing" /usr/share/plymouth/themes/nothing
+  cp -r "$BOOT/plymouth/nothing" /usr/share/plymouth/themes/nothing
   plymouth-set-default-theme -R nothing
   if (( ! KEEP_CMDLINE )) && ! grep -qw rhgb /proc/cmdline; then
     grubby --update-kernel=ALL --args="rhgb quiet"
